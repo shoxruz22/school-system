@@ -12,8 +12,19 @@ class m211019_134615_create_pupil_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('{{%pupil}}', [
+        $this->createTable('{{_pupil}}', [
             'id' => $this->primaryKey(),
+            'full_name' => $this->string(255)->notNull(),
+            'address' => $this->string(255),
+            'age' => $this->tinyInteger(),
+            'phone' => $this->string('255'),
+            'gender' => $this->tinyInteger(1),
+            'status' => $this->tinyInteger(1)->notNull()->defaultValue(1),
+            'is_deleted' => $this->tinyInteger(1)->notNull()->defaultValue(0),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull(),
+            'created_by' => $this->integer()->notNull(),
+            'updated_by' => $this->integer()->notNull(),
         ]);
     }
 
@@ -22,6 +33,6 @@ class m211019_134615_create_pupil_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%pupil}}');
+        $this->dropTable('{{pupil}}');
     }
 }
