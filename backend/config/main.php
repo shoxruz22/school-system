@@ -10,12 +10,16 @@ $params = array_merge(
 return [
     'id' => 'app-backend',
     'name' => 'Starter Kit - Admin Panel',
-    'language'=>'uz',
-    'sourceLanguage'=>'en',
+    'language' => 'uz',
+    'sourceLanguage' => 'en',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'catalog' => [
+            'class' => 'backend\modules\catalog\Module',
+        ],
+    ],
     'components' => [
         'request' => [
             'baseUrl' => '/admin',
