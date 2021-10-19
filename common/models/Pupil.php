@@ -31,4 +31,11 @@ class Pupil extends BasePupil
             ]
         );
     }
+
+    #region Getters
+    public static function getCount()
+    {
+        return Pupil::find()->count();
+    }
+    #endregion
 }

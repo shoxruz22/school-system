@@ -1,13 +1,18 @@
 <?php
+declare(strict_types=1);
 
+use common\models\Pupil;
+use dmstr\helpers\Metadata;
 use rmrevin\yii\fontawesome\FA;
-use yii\helpers\Inflector;
+use yii\data\ArrayDataProvider;
+use yii\widgets\ListView;
 
 /*
  * @var yii\web\View $this
  */
-$controllers = \dmstr\helpers\Metadata::getModuleControllers($this->context->module->id);
+$controllers = Metadata::getModuleControllers($this->context->module->id);
 $favourites = [];
+
 $patterns = [
     '^default$' => ['color' => 'gray', 'icon' => FA::_CUBE],
     '^.*$' => ['color' => 'green', 'icon' => FA::_CUBE],
@@ -24,13 +29,12 @@ foreach ($patterns as $pattern => $options) {
             #$favourites[$c]['head']  .= ' <small class="label label-info pull-right">'.count($model->find()->all()).'</small>';
             $favourites[$c]['label'] = $item['name'];
             $favourites[$c]['color'] = $options['color'];
-            $favourites[$c]['icon'] = isset($options['icon']) ? $options['icon'] : null;
+            $favourites[$c]['icon'] = $options['icon'] ?? null;
             unset($controllers[$c]);
         }
     }
 }
-
-$dataProvider = new \yii\data\ArrayDataProvider(
+$dataProvider = new ArrayDataProvider(
     [
         'allModels' => $favourites,
         'pagination' => [
@@ -39,19 +43,19 @@ $dataProvider = new \yii\data\ArrayDataProvider(
     ]
 );
 
-$listView = \yii\widgets\ListView::widget(
+$listView = ListView::widget(
         [
             'dataProvider' => $dataProvider,
             'layout' => "{items}\n{pager}",
             'itemView' => function ($data) {
-                return '<div class="col-xs-6 col-sm-4 col-lg-3">' . insolita\wgadminlte\SmallBox::widget(
+                return '<div class="col-xs-6 col-sm-4 col-lg-3">' . insolita\wgadminlte\LteSmallBox::widget(
                         [
-                            'head' => $data['head'],
                             'type' => $data['color'],
+                            'title' => Pupil::getCount(),
                             'text' => $data['label'],
+                            'icon' => 'fa fa-' . $data['icon'],
                             'footer' => 'Manage',
-                            'footer_link' => $data['route'],
-                            'icon' => 'fa fa-' . $data['icon']
+                            'link' => $data['url'],
                         ]
                     );
             },
@@ -60,5 +64,6 @@ $listView = \yii\widgets\ListView::widget(
 ?>
 
 <div class="row">
-    <?= $listView ?></div>
+    <?= $listView ?>
+</div>
 
