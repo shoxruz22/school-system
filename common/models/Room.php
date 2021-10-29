@@ -14,6 +14,10 @@ class Room extends BaseRoom
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
 
+    const TYPE_ONE = 1;
+    const TYPE_FIFE = 5;
+    const TYPE_NINE = 9;
+
     public function behaviors()
     {
         return ArrayHelper::merge(

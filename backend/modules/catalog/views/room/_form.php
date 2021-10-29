@@ -48,7 +48,9 @@ use yii\helpers\StringHelper;
 			<?= $form->field($model, 'number_of_students')->textInput() ?>
 
 <!-- attribute type -->
-			<?= $form->field($model, 'type')->textInput() ?>
+            <?= $form->field($model, 'type')->dropDownList(RoomHelper::getTypeList()),[
+                'prompt' => Yii::t('ui', 'Select')
+            ] ?>
 
 <!-- attribute status -->
             <?= $form->field($model, 'status')->dropDownList(RoomHelper::getStatusList()) ?>

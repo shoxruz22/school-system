@@ -70,7 +70,13 @@ $this->params['breadcrumbs'][] = 'View';
         'attributes' => [
             'name',
             'number_of_students',
-            'type',
+            [
+                'attribute' => 'type',
+                'value' => function (Room $model) {
+                    return RoomHelper::getTypeLabel($model->type);
+                },
+                'format' => 'raw'
+            ],
             [
                 'attribute' => 'status',
                 'value' => function (Room $model) {

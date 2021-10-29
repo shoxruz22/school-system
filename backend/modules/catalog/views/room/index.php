@@ -63,6 +63,11 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'attribute' => 'type',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
+                'value' => function (Room $model) {
+                    return RoomHelper::getTypeLabel($model->type);
+                },
+                'filter' => RoomHelper::getTypeList(),
+                'format' => 'raw'
             ],
             [
                 'attribute' => 'status',

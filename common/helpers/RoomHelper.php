@@ -40,4 +40,38 @@ class RoomHelper
             'class' => $class,
         ]);
     }
+
+    public static function getTypeList(): array
+    {
+        return [
+            Room::TYPE_ONE => Yii::t('models', 'Маленький'),
+            Room::TYPE_FIFE => Yii::t('models', 'Средний'),
+            Room::TYPE_NINE => Yii::t('models', 'Бальшой'),
+        ];
+    }
+
+    public static function getTypeName(int $name)
+    {
+        return ArrayHelper::getValue(self::getTypeList(), $name);
+    }
+    public static function getTypeLabel($type): string
+    {
+        switch ($type) {
+            case Room::TYPE_ONE:
+                $class = 'label label-success';
+                break;
+            case Room::TYPE_FIFE:
+                $class = 'label label-danger';
+                break;
+            case Room::TYPE_NINE:
+                $class = 'label label-primary';
+                break;
+            default:
+                $class = 'label label-default';
+        }
+
+        return Html::tag('span', ArrayHelper::getValue(self::getTypeList(), $type), [
+            'class' => $class,
+        ]);
+    }
 }
