@@ -54,6 +54,12 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
             ],
+
+            [
+                'attribute' => 'number_of_students',
+                'vAlign' => 'middle',
+                'hAlign' => 'left',
+            ],
             [
                 'attribute' => 'type',
                 'vAlign' => 'middle',
@@ -64,12 +70,6 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'filter' => RoomHelper::getTypeList(),
                 'format' => 'raw'
             ],
-            [
-                'attribute' => 'number_of_students',
-                'vAlign' => 'middle',
-                'hAlign' => 'left',
-            ],
-
             [
                 'attribute' => 'status',
                 'vAlign' => 'middle',
