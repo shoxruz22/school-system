@@ -39,6 +39,7 @@
                             ['label' => Yii::t('ui', 'Ученики'), 'icon' => 'file', 'url' => ['/catalog/pupil/index']],
                             ['label' => Yii::t('ui', 'Учителя'), 'icon' => 'file', 'url' => ['/catalog/teacher/index']],
                             ['label' => Yii::t('ui', 'Предметы'), 'icon' => 'file', 'url' => ['/catalog/subject/index']],
+                            ['label' => Yii::t('ui', 'Комнаты'), 'icon' => 'file', 'url' => ['/catalog/room/index']],
                         ],
                     ],
                 ],
