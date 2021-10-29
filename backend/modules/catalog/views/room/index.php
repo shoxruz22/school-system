@@ -55,20 +55,21 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'hAlign' => 'left',
             ],
             [
-                'attribute' => 'number_of_students',
-                'vAlign' => 'middle',
-                'hAlign' => 'left',
-            ],
-            [
                 'attribute' => 'type',
                 'vAlign' => 'middle',
-                'hAlign' => 'left',
+                'hAlign' => 'center',
                 'value' => function (Room $model) {
                     return RoomHelper::getTypeLabel($model->type);
                 },
                 'filter' => RoomHelper::getTypeList(),
                 'format' => 'raw'
             ],
+            [
+                'attribute' => 'number_of_students',
+                'vAlign' => 'middle',
+                'hAlign' => 'left',
+            ],
+
             [
                 'attribute' => 'status',
                 'vAlign' => 'middle',

@@ -44,15 +44,16 @@ use yii\helpers\StringHelper;
 <!-- attribute name -->
 			<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-<!-- attribute number_of_students -->
+
+            <!-- attribute type -->
+            <?= $form->field($model, 'type')->dropDownList(RoomHelper::getTypeList(),[
+                'prompt' => Yii::t('ui', 'Select')
+            ] )?>
+
+            <!-- attribute number_of_students -->
 			<?= $form->field($model, 'number_of_students')->textInput() ?>
 
-<!-- attribute type -->
-            <?= $form->field($model, 'type')->dropDownList(RoomHelper::getTypeList()),[
-                'prompt' => Yii::t('ui', 'Select')
-            ] ?>
-
-<!-- attribute status -->
+    <!-- attribute status -->
             <?= $form->field($model, 'status')->dropDownList(RoomHelper::getStatusList()) ?>
 
         </p>
