@@ -19,7 +19,7 @@ public function rules()
 {
 return [
 [['id', 'status', 'is_deleted', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['teacher_name', 'age', 'phone_number', 'address', 'gender', 'email', 'subject'], 'safe'],
+            [['full_name', 'age', 'phone', 'address', 'gender' ], 'safe'],
 ];
 }
 
@@ -65,13 +65,12 @@ $query->andFilterWhere([
             'updated_by' => $this->updated_by,
         ]);
 
-        $query->andFilterWhere(['like', 'teacher_name', $this->teacher_name])
+        $query->andFilterWhere(['like', 'full_name', $this->full_name])
             ->andFilterWhere(['like', 'age', $this->age])
-            ->andFilterWhere(['like', 'phone_number', $this->phone_number])
+            ->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'address', $this->address])
-            ->andFilterWhere(['like', 'gender', $this->gender])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'subject', $this->subject]);
+            ->andFilterWhere(['like', 'gender', $this->gender]);
+
 
 return $dataProvider;
 }

@@ -35,7 +35,6 @@ $this->params['breadcrumbs'][] = 'View';
         <?= he($this->title) ?>
     </h2>
 
-
     <div class="clearfix crud-navigation">
 
         <!-- menu buttons -->
@@ -66,16 +65,16 @@ $this->params['breadcrumbs'][] = 'View';
     <?= DetailView::widget([
     'model' => $model,
     'attributes' => [
-            'teacher_name',
-        'age',
-        'phone_number',
-        'address',
+            'full_name',
         [
             'attribute' => 'gender',
             'value' => function (Teacher $model) {
                 return TeacherHelper::getGenderName($model->gender);
             },
         ],
+        'age',
+        'phone',
+        'address',
         [
             'attribute' => 'status',
             'value' => function (Teacher $model) {
@@ -83,7 +82,6 @@ $this->params['breadcrumbs'][] = 'View';
             },
             'format' => 'raw'
         ]
-
     ],
     ]); ?>
 

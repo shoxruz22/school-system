@@ -12,15 +12,13 @@ class m211029_042903_create_teacher_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('{{%teacher}}', [
+        $this->createTable('{{_teacher}}', [
             'id' => $this->primaryKey(),
-            'teacher_name'=>$this->string(255)->notNull(),
-            'age'=>$this->string(255)->notNull(),
-            'phone_number'=>$this->string(255)->notNull(),
-            'address'=>$this->string(255)->notNull(),
-            'gender'=>$this->string(255)->notNull(),
-            'email'=>$this->string(255)->notNull(),
-            'subject'=>$this->string(255)->notNull(),
+            'full_name'=>$this->string(255)->notNull(),
+            'age'=>$this->tinyInteger(),
+            'phone'=>$this->string(255),
+            'address'=>$this->string(255),
+            'gender' => $this->tinyInteger(1)->notNull(),
             'status'=>$this->tinyInteger(1)->notNull()->defaultValue(1),
             'is_deleted' => $this->tinyInteger(1)->notNull()->defaultValue(0),
             'created_at' => $this->integer()->notNull(),
@@ -35,6 +33,6 @@ class m211029_042903_create_teacher_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%teacher}}');
+        $this->dropTable('{{_teacher}}');
     }
 }

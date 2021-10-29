@@ -9,16 +9,14 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the base-model class for table "teacher".
+ * This is the base-model class for table "_teacher".
  *
  * @property integer $id
- * @property string $teacher_name
- * @property string $age
- * @property string $phone_number
+ * @property string $full_name
+ * @property integer $age
+ * @property string $phone
  * @property string $address
- * @property string $gender
- * @property string $email
- * @property string $subject
+ * @property integer $gender
  * @property integer $status
  * @property integer $is_deleted
  * @property integer $created_at
@@ -37,7 +35,7 @@ abstract class Teacher extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'teacher';
+        return '_teacher';
     }
 
     /**
@@ -61,9 +59,9 @@ abstract class Teacher extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['teacher_name', 'age', 'phone_number', 'address', 'gender', 'email', 'subject'], 'required'],
-            [['status', 'is_deleted'], 'integer'],
-            [['teacher_name', 'age', 'phone_number', 'address', 'gender', 'email', 'subject'], 'string', 'max' => 255]
+            [['full_name', 'gender'], 'required'],
+            [['age', 'gender', 'status', 'is_deleted'], 'integer'],
+            [['full_name', 'phone', 'address'], 'string', 'max' => 255]
         ];
     }
 
@@ -74,13 +72,11 @@ abstract class Teacher extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'teacher_name' => Yii::t('models', 'Teacher Name'),
+            'full_name' => Yii::t('models', 'Full Name'),
             'age' => Yii::t('models', 'Age'),
-            'phone_number' => Yii::t('models', 'Phone Number'),
+            'phone' => Yii::t('models', 'Phone'),
             'address' => Yii::t('models', 'Address'),
             'gender' => Yii::t('models', 'Gender'),
-            'email' => Yii::t('models', 'Email'),
-            'subject' => Yii::t('models', 'Subject'),
             'status' => Yii::t('models', 'Status'),
             'is_deleted' => Yii::t('models', 'Is Deleted'),
             'created_at' => Yii::t('models', 'Created At'),

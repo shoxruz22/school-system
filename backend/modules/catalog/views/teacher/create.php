@@ -11,7 +11,7 @@ $this->title = Yii::t('models', 'Teacher');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Teachers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class=" teacher-create">
+<div class="teacher-create">
 
     <div class="clearfix crud-navigation">
         <div class="pull-left">
@@ -19,10 +19,10 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <hr />
+    <hr/>
 
     <?= $this->render('_form', [
-    'model' => $model,
+        'model' => $model,
     ]); ?>
 
 </div>

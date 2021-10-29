@@ -4,6 +4,7 @@ use common\helpers\TeacherHelper;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
+
 /**
 * @var yii\web\View $this
 * @var common\models\Teacher $model
@@ -32,36 +33,34 @@ use yii\bootstrap\ActiveForm;
     ]
     );
     ?>
+<section>
 
-    <section>
+            <div>
 
-        <div>
+<!-- attribute full_name -->
+			<?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
 
-<!-- attribute teacher_name -->
-			<?= $form->field($model, 'teacher_name')->textInput(['maxlength' => true]) ?>
+<!-- attribute gender -->
+			<?= $form->field($model, 'gender')->dropDownList(TeacherHelper::getGenderList(),['prompt'=>Yii::t('ui','Choose...')]) ?>
 
 <!-- attribute age -->
-            <?= $form->field($model, 'age')->textInput(['type' => 'number']) ?>
+                <?= $form->field($model, 'age')->textInput(['type' => 'number']) ?>
 
-<!-- attribute phone_number -->
-			<?= $form->field($model, 'phone_number')->textInput(['maxlength' => true]) ?>
+<!-- attribute phone -->
+			<?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
 <!-- attribute address -->
 			<?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
-<!-- attribute gender -->
-			<?= $form->field($model, 'gender')->dropDownList(TeacherHelper::getGenderList(),[ 'prompt' =>Yii::t('ui','Choose...')]) ?>
-
-
-<!-- attribute status -->
-			<?= $form->field($model, 'status')->dropDownList(TeacherHelper::getStatusList())?>
-
+                <!-- attribute status -->
+                <?= $form->field($model, 'status')->dropDownList(TeacherHelper::getStatusList()) ?>
         </div>
+
+        
 
         <hr/>
 
         <?php echo $form->errorSummary($model); ?>
-       <div class="text-center">
+        <div class="text-center">
         <?= Html::submitButton(
         '<span class="glyphicon glyphicon-check"></span> ' .
         ($model->isNewRecord ? 'Create' : 'Save'),
@@ -71,8 +70,10 @@ use yii\bootstrap\ActiveForm;
         ]
         );
         ?>
-       </div>
+        </div>
         <?php ActiveForm::end(); ?>
+
     </section>
+
 </div>
 

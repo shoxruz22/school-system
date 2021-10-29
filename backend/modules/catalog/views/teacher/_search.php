@@ -19,19 +19,15 @@ use yii\widgets\ActiveForm;
 
     		<?= $form->field($model, 'id') ?>
 
-		<?= $form->field($model, 'teacher_name') ?>
+		<?= $form->field($model, 'full_name') ?>
 
 		<?= $form->field($model, 'age') ?>
 
-		<?= $form->field($model, 'phone_number') ?>
+		<?= $form->field($model, 'phone') ?>
 
 		<?= $form->field($model, 'address') ?>
 
 		<?php // echo $form->field($model, 'gender') ?>
-
-		<?php // echo $form->field($model, 'email') ?>
-
-		<?php // echo $form->field($model, 'subject') ?>
 
 		<?php // echo $form->field($model, 'status') ?>
 

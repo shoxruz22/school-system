@@ -27,19 +27,18 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
 ?>
 <div class="giiant-crud teacher-index">
 
-  <h1>
-      <?=he($this->title)?>
-  </h1>
+    <h1>
+        <?= he($this->title) ?>
+    </h1>
 
-    
-    <?php \yii\widgets\Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
-
+    <?php Pjax::begin(['id' => 'pjax-main', 'enableReplaceState' => false, 'linkSelector' => '#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success' => 'function(){alert("yo")}']]) ?>
 
     <div class="clearfix crud-navigation">
         <div class="pull-left">
-            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui','Добавить'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui', "Добавить"), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
     </div>
+
     <hr />
 
     <div>
@@ -51,12 +50,12 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'contentOptions' => ['class' => 'text-center'],
             ],
             [
-                'attribute' => 'teacher_name',
+                'attribute' => 'full_name',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
             ],
             [
-                'attribute' => 'phone_number',
+                'attribute' => 'phone',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
             ],
