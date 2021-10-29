@@ -31,12 +31,9 @@ $this->params['breadcrumbs'][] = 'View';
         </span>
     <?php endif; ?>
 
-    <h1>
-        <?= Yii::t('models', 'Teacher') ?>
-        <small>
-            <?= Html::encode($model->id) ?>
-        </small>
-    </h1>
+    <h2>
+        <?= he($this->title) ?>
+    </h2>
 
 
     <div class="clearfix crud-navigation">
@@ -44,24 +41,19 @@ $this->params['breadcrumbs'][] = 'View';
         <!-- menu buttons -->
         <div class='pull-left'>
             <?= Html::a(
-            '<span class="glyphicon glyphicon-pencil"></span> ' . 'Edit',
-            [ 'update', 'id' => $model->id],
-            ['class' => 'btn btn-info']) ?>
+                '<span class="glyphicon glyphicon-pencil"></span> ' . Yii::t('ui', 'Редактировать'),
+                ['update', 'id' => $model->id],
+                ['class' => 'btn btn-info']) ?>
 
             <?= Html::a(
-            '<span class="glyphicon glyphicon-copy"></span> ' . 'Copy',
-            ['create', 'id' => $model->id, 'Teacher'=>$copyParams],
-            ['class' => 'btn btn-success']) ?>
-
-            <?= Html::a(
-            '<span class="glyphicon glyphicon-plus"></span> ' . 'New',
-            ['create'],
-            ['class' => 'btn btn-success']) ?>
+                '<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui', "Добавить"),
+                ['create'],
+                ['class' => 'btn btn-success']) ?>
         </div>
 
         <div class="pull-right">
             <?= Html::a('<span class="glyphicon glyphicon-list"></span> '
-            . 'Full list', ['index'], ['class'=>'btn btn-default']) ?>
+                . Yii::t('ui', "Полный список"), ['index'], ['class' => 'btn btn-warning']) ?>
         </div>
 
     </div>
