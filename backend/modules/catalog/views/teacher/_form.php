@@ -3,8 +3,6 @@
 use common\helpers\TeacherHelper;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use \dmstr\bootstrap\Tabs;
-use yii\helpers\StringHelper;
 
 /**
 * @var yii\web\View $this
@@ -43,7 +41,7 @@ use yii\helpers\StringHelper;
 			<?= $form->field($model, 'teacher_name')->textInput(['maxlength' => true]) ?>
 
 <!-- attribute age -->
-			<?= $form->field($model, 'age')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'age')->textInput(['type' => 'number']) ?>
 
 <!-- attribute phone_number -->
 			<?= $form->field($model, 'phone_number')->textInput(['maxlength' => true]) ?>
@@ -52,8 +50,7 @@ use yii\helpers\StringHelper;
 			<?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
 <!-- attribute gender -->
-			<?= $form->field($model, 'gender')->dropDownList(TeacherHelper::getGenderList(),['prompt' => Yii::t('ui', 'Select')
-            ]) ?>
+			<?= $form->field($model, 'gender')->dropDownList(TeacherHelper::getGenderList(),[ 'prompt' =>Yii::t('ui','Choose...')]) ?>
 
 <!-- attribute email -->
 			<?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
@@ -62,14 +59,14 @@ use yii\helpers\StringHelper;
 			<?= $form->field($model, 'subject')->textInput(['maxlength' => true]) ?>
 
 <!-- attribute status -->
-			<?= $form->field($model, 'status')->dropDownList(TeacherHelper::getStatusList()) ?>
+			<?= $form->field($model, 'status')->dropDownList(TeacherHelper::getStatusList())?>
 
         </div>
 
         <hr/>
 
         <?php echo $form->errorSummary($model); ?>
-        <div class="text-center">
+       <div class="text-center">
         <?= Html::submitButton(
         '<span class="glyphicon glyphicon-check"></span> ' .
         ($model->isNewRecord ? 'Create' : 'Save'),
@@ -79,10 +76,8 @@ use yii\helpers\StringHelper;
         ]
         );
         ?>
-        </div>
+       </div>
         <?php ActiveForm::end(); ?>
-
     </section>
-
 </div>
 

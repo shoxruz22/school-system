@@ -1,6 +1,5 @@
 <?php
 
-
 use common\helpers\TeacherHelper;
 use common\models\Teacher;
 use yii\helpers\Html;
@@ -26,23 +25,21 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
 }
 $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTemplateString.'</div>';
 ?>
-<div class="teacher-index">
+<div class="giiant-crud teacher-index">
 
-
-    <h1>
-        <?=he($this->title)?>
-    </h1>
+  <h1>
+      <?=he($this->title)?>
+  </h1>
 
     
-    <?php Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
+    <?php \yii\widgets\Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
+
 
     <div class="clearfix crud-navigation">
         <div class="pull-left">
-            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui','Добавитъ'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui','Добавить'), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
-
     </div>
-
     <hr />
 
     <div>
@@ -67,9 +64,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'attribute' => 'gender',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
-                'value' =>
-
-                    function (Teacher $model) {
+                'value' => function (Teacher $model) {
                     return TeacherHelper::getGenderName($model->gender);
                 },
                 'filter' => TeacherHelper::getGenderList()
@@ -81,7 +76,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'value' => function (Teacher $model) {
                     return TeacherHelper::getStatusLabel($model->status);
                 },
-                'filter' =>TeacherHelper::getStatusList(),
+                'filter' => TeacherHelper::getStatusList(),
                 'format' => 'raw'
             ],
             [
@@ -137,7 +132,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                     'content' =>
                         Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], [
                             'class' => 'btn btn-default',
-                            'title' => Yii::t('kvgrid', 'Reset Grid'),
+                            'title' => Yii::t('kartik-v grid', 'Reset Grid'),
                             'data-pjax' => 0,
                         ]),
                     'options' => ['class' => 'btn-group mr-2']
@@ -156,6 +151,8 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
     </div>
 
 </div>
+
+
 <?php Pjax::end() ?>
 
 

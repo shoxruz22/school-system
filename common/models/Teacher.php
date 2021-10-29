@@ -23,12 +23,21 @@ class Teacher extends BaseTeacher
             parent::behaviors(),
             [
                 # custom behaviors
+            ]
+        );
+    }
+
+    public function rules()
+    {
+        return ArrayHelper::merge(
+            parent::rules(),
+            [
+                # custom validation rules
                 [['age', 'gender'], 'required'],
                 [['age'], 'number', 'min' => 18]
             ]
         );
     }
-
     #region Getters
     public static function getCount()
     {

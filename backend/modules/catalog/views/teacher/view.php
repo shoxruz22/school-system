@@ -44,19 +44,24 @@ $this->params['breadcrumbs'][] = 'View';
         <!-- menu buttons -->
         <div class='pull-left'>
             <?= Html::a(
-                '<span class="glyphicon glyphicon-pencil"></span> ' . Yii::t('ui', 'Редактировать'),
-                ['update', 'id' => $model->id],
-                ['class' => 'btn btn-info']) ?>
+            '<span class="glyphicon glyphicon-pencil"></span> ' . 'Edit',
+            [ 'update', 'id' => $model->id],
+            ['class' => 'btn btn-info']) ?>
 
             <?= Html::a(
-                '<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui', "Добавить"),
-                ['create'],
-                ['class' => 'btn btn-success']) ?>
+            '<span class="glyphicon glyphicon-copy"></span> ' . 'Copy',
+            ['create', 'id' => $model->id, 'Teacher'=>$copyParams],
+            ['class' => 'btn btn-success']) ?>
+
+            <?= Html::a(
+            '<span class="glyphicon glyphicon-plus"></span> ' . 'New',
+            ['create'],
+            ['class' => 'btn btn-success']) ?>
         </div>
 
         <div class="pull-right">
             <?= Html::a('<span class="glyphicon glyphicon-list"></span> '
-                . Yii::t('ui', "Полный список"), ['index'], ['class' => 'btn btn-warning']) ?>
+            . 'Full list', ['index'], ['class'=>'btn btn-default']) ?>
         </div>
 
     </div>
@@ -67,10 +72,9 @@ $this->params['breadcrumbs'][] = 'View';
 
     
     <?= DetailView::widget([
-            'template' => "<tr><th style='width: 20%'>{label}</th><td>{value}</td></tr>",
     'model' => $model,
     'attributes' => [
-        'teacher_name',
+            'teacher_name',
         'age',
         'phone_number',
         'address',
@@ -83,24 +87,27 @@ $this->params['breadcrumbs'][] = 'View';
         'email:email',
         'subject',
         [
-                'attribute' => 'status',
-                'value' => function (Teacher $model) {
-                    return TeacherHelper::getStatusLabel($model->status);
-                },
-                'format' => 'raw'
-            ],
+            'attribute' => 'status',
+            'value' => function (Teacher $model) {
+                return TeacherHelper::getStatusLabel($model->status);
+            },
+            'format' => 'raw'
+        ]
+
     ],
     ]); ?>
 
     
     <hr/>
 
-    <?= Html::a('<span class="glyphicon glyphicon-trash"></span> ' .Yii::t('ui','Удалить'), ['delete', 'id' => $model->id],
-    [
-    'class' => 'btn btn-danger',
-    'data-confirm' => '' . 'Are you sure to delete this item?' . '',
-    'data-method' => 'post',
-    ]); ?>
+    <?=
+    Html::a('<span class="glyphicon glyphicon-trash"></span> ' . Yii::t('ui', "Удалить"), ['delete', 'id' => $model->id],
+        [
+            'class' => 'btn btn-danger',
+            'data-confirm' => 'Вы уверены, что хотите удалить этот элемент?',
+            'data-method' => 'post',
+        ]);
+    ?>
     <?php $this->endBlock(); ?>
 
 

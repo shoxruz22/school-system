@@ -43,8 +43,8 @@ class TeacherHelper
     public static function getGenderList(): array
     {
         return [
-            Teacher::GENDER_MALE => Yii::t('models', 'male'),
-            Teacher::GENDER_FEMALE => Yii::t('models', 'female'),
+            Teacher::GENDER_MALE => Yii::t('models', 'Male'),
+            Teacher::GENDER_FEMALE => Yii::t('models', 'Female'),
         ];
     }
 
