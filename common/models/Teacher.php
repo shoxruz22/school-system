@@ -34,7 +34,8 @@ class Teacher extends BaseTeacher
             [
                 # custom validation rules
                 [['age', 'gender'], 'required'],
-                [['age'], 'number', 'min' => 18]
+                [['age'], 'number', 'min' => 18],
+
             ]
         );
     }

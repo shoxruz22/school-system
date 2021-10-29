@@ -52,11 +52,6 @@ use yii\bootstrap\ActiveForm;
 <!-- attribute gender -->
 			<?= $form->field($model, 'gender')->dropDownList(TeacherHelper::getGenderList(),[ 'prompt' =>Yii::t('ui','Choose...')]) ?>
 
-<!-- attribute email -->
-			<?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-<!-- attribute subject -->
-			<?= $form->field($model, 'subject')->textInput(['maxlength' => true]) ?>
 
 <!-- attribute status -->
 			<?= $form->field($model, 'status')->dropDownList(TeacherHelper::getStatusList())?>

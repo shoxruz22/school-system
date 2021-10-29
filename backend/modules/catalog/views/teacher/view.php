@@ -76,8 +76,6 @@ $this->params['breadcrumbs'][] = 'View';
                 return TeacherHelper::getGenderName($model->gender);
             },
         ],
-        'email:email',
-        'subject',
         [
             'attribute' => 'status',
             'value' => function (Teacher $model) {
