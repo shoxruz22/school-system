@@ -5,14 +5,20 @@
 namespace common\models\base;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the base-model class for table "subject".
+ * This is the base-model class for table "_subject".
  *
  * @property integer $id
- * @property string $type
- * @property string $subject_name
- * @property string $price
+ * @property string $name
+ * @property integer $status
+ * @property integer $is_deleted
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property integer $created_by
+ * @property integer $updated_by
  * @property string $aliasModel
  */
 abstract class Subject extends \yii\db\ActiveRecord
@@ -25,7 +31,22 @@ abstract class Subject extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'subject';
+        return '_subject';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => BlameableBehavior::className(),
+            ],
+            [
+                'class' => TimestampBehavior::className(),
+            ],
+        ];
     }
 
     /**
@@ -34,7 +55,8 @@ abstract class Subject extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'subject_name', 'price'], 'string', 'max' => 255]
+            [['status', 'is_deleted'], 'integer'],
+            [['name'], 'string', 'max' => 255]
         ];
     }
 
@@ -44,10 +66,14 @@ abstract class Subject extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('models', 'ID'),
-            'type' => Yii::t('models', 'Type'),
-            'subject_name' => Yii::t('models', 'Subject Name'),
-            'price' => Yii::t('models', 'Price'),
+            'id' => 'ID',
+            'name' => 'Name',
+            'status' => 'Status',
+            'is_deleted' => 'Is Deleted',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+            'created_by' => 'Created By',
+            'updated_by' => 'Updated By',
         ];
     }
 

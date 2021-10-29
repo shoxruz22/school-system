@@ -65,9 +65,7 @@ $this->params['breadcrumbs'][] = 'View';
     <?= DetailView::widget([
     'model' => $model,
     'attributes' => [
-            'type',
-        'subject_name',
-        'price',
+        'name',
     ],
     ]); ?>
 

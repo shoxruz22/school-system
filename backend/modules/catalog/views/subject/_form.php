@@ -40,14 +40,10 @@ use yii\bootstrap\ActiveForm;
         <p>
             
 
-<!-- attribute type -->
-			<?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
 
-<!-- attribute subject_name -->
-			<?= $form->field($model, 'subject_name')->textInput(['maxlength' => true]) ?>
+<!-- attribute name -->
+			<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-<!-- attribute price -->
-			<?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
 
             <?= $form->field($model, 'status')->dropDownList(SubjectHelper::getStatusList()) ?>

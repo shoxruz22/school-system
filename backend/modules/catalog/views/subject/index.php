@@ -58,24 +58,16 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'headerOptions' => ['style' => 'width: 5%', 'class' => 'text-center'],
                 'contentOptions' => ['class' => 'text-center'],
             ],
+
             [
-                'attribute' => 'type',
-                'vAlign' => 'middle',
-                'hAlign' => 'left',
-            ],
-            [
-                'attribute' => 'subject_name',
-                'vAlign' => 'middle',
-                'hAlign' => 'left',
-            ],      [
-                'attribute' => 'price',
+                'attribute' => 'name',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
             ],
             [
                 'attribute' => 'status',
                 'vAlign' => 'middle',
-                'hAlign' => 'left',
+                'hAlign' => 'center',
                 'value' => function (Subject $model) {
                     return SubjectHelper::getStatusLabel($model->status);
                 },
