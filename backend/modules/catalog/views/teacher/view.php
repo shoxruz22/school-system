@@ -1,33 +1,33 @@
 <?php
 
-use common\helpers\PupilHelper;
-use common\models\Pupil;
+use common\helpers\TeacherHelper;
+use common\models\Teacher;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use kartik\grid\GridView;
+use yii\grid\GridView;
 use yii\widgets\DetailView;
 use yii\widgets\Pjax;
 use dmstr\bootstrap\Tabs;
 
 /**
- * @var yii\web\View $this
- * @var common\models\Pupil $model
- */
+* @var yii\web\View $this
+* @var common\models\Teacher $model
+*/
 $copyParams = $model->attributes;
 
-$this->title = Yii::t('models', 'Pupil');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Pupils'), 'url' => ['index']];
+$this->title = Yii::t('models', 'Teacher');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Teachers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'View';
 ?>
-<div class="pupil-view">
+<div class="giiant-crud teacher-view">
 
     <!-- flash message -->
-    <?php if (Yii::$app->session->getFlash('deleteError') !== null) : ?>
+    <?php if (\Yii::$app->session->getFlash('deleteError') !== null) : ?>
         <span class="alert alert-info alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
-            <?= Yii::$app->session->getFlash('deleteError') ?>
+            <?= \Yii::$app->session->getFlash('deleteError') ?>
         </span>
     <?php endif; ?>
 
@@ -59,33 +59,33 @@ $this->params['breadcrumbs'][] = 'View';
 
     <hr/>
 
-    <?php $this->beginBlock('common\models\Pupil'); ?>
+    <?php $this->beginBlock('common\models\Teacher'); ?>
 
+    
     <?= DetailView::widget([
-        'template' => "<tr><th style='width: 20%'>{label}</th><td>{value}</td></tr>",
-        'model' => $model,
-        'attributes' => [
+    'model' => $model,
+    'attributes' => [
             'full_name',
-            'age',
-            [
-                'attribute' => 'gender',
-                'value' => function (Pupil $model) {
-                    return PupilHelper::getGenderName($model->gender);
-                },
-            ],
-            'phone',
-            'address',
-            [
-                'attribute' => 'status',
-                'value' => function (Pupil $model) {
-                    return PupilHelper::getStatusLabel($model->status);
-                },
-                'format' => 'raw'
-            ]
+        [
+            'attribute' => 'gender',
+            'value' => function (Teacher $model) {
+                return TeacherHelper::getGenderName($model->gender);
+            },
         ],
+        'age',
+        'phone',
+        'address',
+        [
+            'attribute' => 'status',
+            'value' => function (Teacher $model) {
+                return TeacherHelper::getStatusLabel($model->status);
+            },
+            'format' => 'raw'
+        ]
+    ],
     ]); ?>
 
-
+    
     <hr/>
 
     <?=
@@ -96,21 +96,22 @@ $this->params['breadcrumbs'][] = 'View';
             'data-method' => 'post',
         ]);
     ?>
-
     <?php $this->endBlock(); ?>
 
+
+    
     <?= Tabs::widget(
-        [
-            'id' => 'relation-tabs',
-            'encodeLabels' => false,
-            'items' => [
-                [
-                    'label' => '<b> <i class="fa fa-info-circle"></i> ' . Yii::t('ui', "Подробная информация") . '</b>',
-                    'content' => $this->blocks['common\models\Pupil'],
-                    'active' => true,
-                ],
-            ]
-        ]
+                 [
+                     'id' => 'relation-tabs',
+                     'encodeLabels' => false,
+                     'items' => [
+ [
+     'label' => '<b> <i class="fa fa-info-circle"></i> ' . Yii::t('ui', "Подробная информация") . '</b>',
+    'content' => $this->blocks['common\models\Teacher'],
+    'active'  => true,
+],
+ ]
+                 ]
     );
     ?>
 </div>

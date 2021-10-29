@@ -37,7 +37,7 @@
                         'url' => '#',
                         'items' => [
                             ['label' => Yii::t('ui', 'Ученики'), 'icon' => 'file', 'url' => ['/catalog/pupil/index']],
-                            ['label' => Yii::t('ui', 'Предмети'), 'icon' => 'file', 'url' => ['/catalog/subject/index']],
+                            ['label' => Yii::t('ui', 'Учителя'), 'icon' => 'file', 'url' => ['/catalog/teacher/index']],
                         ],
                     ],
                 ],
