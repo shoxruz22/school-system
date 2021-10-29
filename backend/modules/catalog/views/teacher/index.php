@@ -1,45 +1,49 @@
 <?php
 
-use common\helpers\PupilHelper;
-use common\models\Pupil;
+
+use common\helpers\TeacherHelper;
+use common\models\Teacher;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
 
 /**
- * @var yii\web\View $this
- * @var yii\data\ActiveDataProvider $dataProvider
- * @var common\models\search\PupilSearch $searchModel
- */
+* @var yii\web\View $this
+* @var yii\data\ActiveDataProvider $dataProvider
+    * @var common\models\search\TeacherSearch $searchModel
+*/
 
-$this->title = Yii::t('models', 'Pupils');
+$this->title = Yii::t('models', 'Teachers');
 $this->params['breadcrumbs'][] = $this->title;
 
 if (isset($actionColumnTemplates)) {
-    $actionColumnTemplate = implode(' ', $actionColumnTemplates);
+$actionColumnTemplate = implode(' ', $actionColumnTemplates);
     $actionColumnTemplateString = $actionColumnTemplate;
 } else {
-    Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphicon-plus"></span> ' . 'New', ['create'], ['class' => 'btn btn-success']);
+Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphicon-plus"></span> ' . 'New', ['create'], ['class' => 'btn btn-success']);
     $actionColumnTemplateString = "{view} {update} {delete}";
 }
-$actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemplateString . '</div>';
+$actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTemplateString.'</div>';
 ?>
-<div class="pupil-index">
+<div class="teacher-index">
+
 
     <h1>
-        <?= he($this->title) ?>
+        <?=he($this->title)?>
     </h1>
 
-    <?php Pjax::begin(['id' => 'pjax-main', 'enableReplaceState' => false, 'linkSelector' => '#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success' => 'function(){alert("yo")}']]) ?>
+    
+    <?php Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
 
     <div class="clearfix crud-navigation">
         <div class="pull-left">
-            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui', "Добавить"), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui','Добавитъ'), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
+
     </div>
 
-    <hr/>
+    <hr />
 
     <div>
         <?php
@@ -50,12 +54,12 @@ $actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemp
                 'contentOptions' => ['class' => 'text-center'],
             ],
             [
-                'attribute' => 'full_name',
+                'attribute' => 'teacher_name',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
             ],
             [
-                'attribute' => 'phone',
+                'attribute' => 'phone_number',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
             ],
@@ -63,19 +67,21 @@ $actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemp
                 'attribute' => 'gender',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
-                'value' => function (Pupil $model) {
-                    return PupilHelper::getGenderName($model->gender);
+                'value' =>
+
+                    function (Teacher $model) {
+                    return TeacherHelper::getGenderName($model->gender);
                 },
-                'filter' => PupilHelper::getGenderList()
+                'filter' => TeacherHelper::getGenderList()
             ],
             [
                 'attribute' => 'status',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'value' => function (Pupil $model) {
-                    return PupilHelper::getStatusLabel($model->status);
+                'value' => function (Teacher $model) {
+                    return TeacherHelper::getStatusLabel($model->status);
                 },
-                'filter' => PupilHelper::getStatusList(),
+                'filter' =>TeacherHelper::getStatusList(),
                 'format' => 'raw'
             ],
             [
@@ -133,7 +139,7 @@ $actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemp
                             'class' => 'btn btn-default',
                             'title' => Yii::t('kvgrid', 'Reset Grid'),
                             'data-pjax' => 0,
-                            ]),
+                        ]),
                     'options' => ['class' => 'btn-group mr-2']
                 ],
             ],
@@ -150,6 +156,6 @@ $actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemp
     </div>
 
 </div>
-
-
 <?php Pjax::end() ?>
+
+
