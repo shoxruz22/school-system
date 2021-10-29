@@ -8,7 +8,7 @@
                 <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>IZZATBEK</p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -37,6 +37,7 @@
                         'url' => '#',
                         'items' => [
                             ['label' => Yii::t('ui', 'Ученики'), 'icon' => 'file', 'url' => ['/catalog/pupil/index']],
+                            ['label' => Yii::t('ui', 'Учителя'), 'icon' => 'file', 'url' => ['/catalog/teacher/index']],
                         ],
                     ],
                 ],

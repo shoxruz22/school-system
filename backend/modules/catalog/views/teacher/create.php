@@ -2,17 +2,16 @@
 
 use yii\helpers\Html;
 
-
 /**
- * @var yii\web\View $this
- * @var common\models\Pupil $model
- */
+* @var yii\web\View $this
+* @var common\models\Teacher $model
+*/
 
-$this->title = Yii::t('models', 'Pupil');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Pupils'), 'url' => ['index']];
+$this->title = Yii::t('models', 'Teacher');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Teachers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pupil-create">
+<div class="teacher-create">
 
     <div class="clearfix crud-navigation">
         <div class="pull-left">
