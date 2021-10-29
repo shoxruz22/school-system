@@ -108,7 +108,7 @@ $this->params['breadcrumbs'][] = 'View';
                      'encodeLabels' => false,
                      'items' => [
  [
-    'label'   => '<b class=""># '.Html::encode($model->id).'</b>',
+     'label' => '<b> <i class="fa fa-info-circle"></i> ' . Yii::t('ui', "Подробная информация") . '</b>',
     'content' => $this->blocks['common\models\Teacher'],
     'active'  => true,
 ],
