@@ -18,8 +18,8 @@ class RoomSearch extends Room
 public function rules()
 {
 return [
-[['id', 'number_rooms', 'number_of_students', 'status', 'is_deleted', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['room_type'], 'safe'],
+[['id', 'name', 'number_of_students', 'status', 'is_deleted', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['type'], 'safe'],
 ];
 }
 
@@ -57,7 +57,7 @@ return $dataProvider;
 
 $query->andFilterWhere([
             'id' => $this->id,
-            'number_rooms' => $this->number_rooms,
+            'name' => $this->name,
             'number_of_students' => $this->number_of_students,
             'status' => $this->status,
             'is_deleted' => $this->is_deleted,
@@ -67,7 +67,7 @@ $query->andFilterWhere([
             'updated_by' => $this->updated_by,
         ]);
 
-        $query->andFilterWhere(['like', 'room_type', $this->room_type]);
+        $query->andFilterWhere(['like', 'type', $this->type]);
 
 return $dataProvider;
 }

@@ -2,10 +2,11 @@
 
 use common\helpers\RoomHelper;
 use common\models\Room;
+use kartik\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use kartik\grid\GridView;
 use yii\widgets\Pjax;
+
 
 /**
 * @var yii\web\View $this
@@ -31,20 +32,16 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
         <?= he($this->title) ?>
     </h1>
 
-    
-    <?php \yii\widgets\Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
-
+    <?php Pjax::begin(['id' => 'pjax-main', 'enableReplaceState' => false, 'linkSelector' => '#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success' => 'function(){alert("yo")}']]) ?>
 
     <div class="clearfix crud-navigation">
         <div class="pull-left">
             <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui', "Добавить"), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
-
     </div>
 
-    <hr />
-
-    <div class="table-responsive">
+    <hr/>
+    <div>
         <?php
         $gridColumns = [
             [
@@ -53,7 +50,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'contentOptions' => ['class' => 'text-center'],
             ],
             [
-                'attribute' => 'number_rooms',
+                'attribute' => 'name',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
             ],
@@ -61,12 +58,12 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'attribute' => 'number_of_students',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
-            ],[
-                'attribute' => 'room_type',
+            ],
+            [
+                'attribute' => 'type',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
             ],
-
             [
                 'attribute' => 'status',
                 'vAlign' => 'middle',
@@ -151,6 +148,6 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
 </div>
 
 
-<?php \yii\widgets\Pjax::end() ?>
+<?php Pjax::end() ?>
 
 

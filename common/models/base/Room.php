@@ -12,9 +12,9 @@ use yii\behaviors\TimestampBehavior;
  * This is the base-model class for table "room".
  *
  * @property integer $id
- * @property integer $number_rooms
+ * @property string $name
  * @property integer $number_of_students
- * @property string $room_type
+ * @property integer $type
  * @property integer $status
  * @property integer $is_deleted
  * @property integer $created_at
@@ -57,9 +57,9 @@ abstract class Room extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['number_rooms', 'number_of_students', 'room_type'], 'required'],
-            [['number_rooms', 'number_of_students', 'status', 'is_deleted'], 'integer'],
-            [['room_type'], 'string', 'max' => 16]
+            [['name', 'number_of_students', 'type'], 'required'],
+            [['number_of_students', 'type', 'status', 'is_deleted'], 'integer'],
+            [['name'], 'string', 'max' => 255]
         ];
     }
 
@@ -70,9 +70,9 @@ abstract class Room extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'number_rooms' => Yii::t('models', 'Number Rooms'),
+            'name' => Yii::t('models', 'Name'),
             'number_of_students' => Yii::t('models', 'Number Of Students'),
-            'room_type' => Yii::t('models', 'Room Type'),
+            'type' => Yii::t('models', 'Type'),
             'status' => Yii::t('models', 'Status'),
             'is_deleted' => Yii::t('models', 'Is Deleted'),
             'created_at' => Yii::t('models', 'Created At'),

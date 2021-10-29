@@ -1,5 +1,6 @@
 <?php
 
+use common\helpers\RoomHelper;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use \dmstr\bootstrap\Tabs;
@@ -40,17 +41,17 @@ use yii\helpers\StringHelper;
         <p>
             
 
-<!-- attribute number_rooms -->
-			<?= $form->field($model, 'number_rooms')->textInput() ?>
+<!-- attribute name -->
+			<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
 <!-- attribute number_of_students -->
 			<?= $form->field($model, 'number_of_students')->textInput() ?>
 
-<!-- attribute room_type -->
-			<?= $form->field($model, 'room_type')->textInput(['maxlength' => true]) ?>
+<!-- attribute type -->
+			<?= $form->field($model, 'type')->textInput() ?>
 
 <!-- attribute status -->
-			<?= $form->field($model, 'status')->textInput() ?>
+            <?= $form->field($model, 'status')->dropDownList(RoomHelper::getStatusList()) ?>
 
         </p>
 
@@ -58,9 +59,9 @@ use yii\helpers\StringHelper;
 
         <hr/>
 
-        <?php echo $form->errorSummary($model); ?>
-
         <div class="text-center">
+            <?php echo $form->errorSummary($model); ?>
+
             <?= Html::submitButton(
                 '<span class="glyphicon glyphicon-check"></span> ' .
                 ($model->isNewRecord ? 'Create' : 'Save'),
@@ -70,9 +71,9 @@ use yii\helpers\StringHelper;
                 ]
             );
             ?>
-        </div>
 
-        <?php ActiveForm::end(); ?>
+            <?php ActiveForm::end(); ?>
+        </div>
 
     </div>
 

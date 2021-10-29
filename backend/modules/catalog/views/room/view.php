@@ -1,5 +1,7 @@
 <?php
 
+use common\helpers\RoomHelper;
+use common\models\Room;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
@@ -15,7 +17,7 @@ $copyParams = $model->attributes;
 
 $this->title = Yii::t('models', 'Room');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Rooms'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => (string)$model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'View';
 ?>
 <div class="giiant-crud room-view">
@@ -31,9 +33,7 @@ $this->params['breadcrumbs'][] = 'View';
 
     <h1>
         <?= Yii::t('models', 'Room') ?>
-        <small>
-            <?= Html::encode($model->id) ?>
-        </small>
+
     </h1>
 
 
@@ -42,24 +42,19 @@ $this->params['breadcrumbs'][] = 'View';
         <!-- menu buttons -->
         <div class='pull-left'>
             <?= Html::a(
-            '<span class="glyphicon glyphicon-pencil"></span> ' . 'Edit',
-            [ 'update', 'id' => $model->id],
-            ['class' => 'btn btn-info']) ?>
+                '<span class="glyphicon glyphicon-pencil"></span> ' . Yii::t('ui', 'Редактировать'),
+                ['update', 'id' => $model->id],
+                ['class' => 'btn btn-info']) ?>
 
             <?= Html::a(
-            '<span class="glyphicon glyphicon-copy"></span> ' . 'Copy',
-            ['create', 'id' => $model->id, 'Room'=>$copyParams],
-            ['class' => 'btn btn-success']) ?>
-
-            <?= Html::a(
-            '<span class="glyphicon glyphicon-plus"></span> ' . 'New',
-            ['create'],
-            ['class' => 'btn btn-success']) ?>
+                '<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui', "Добавить"),
+                ['create'],
+                ['class' => 'btn btn-success']) ?>
         </div>
 
         <div class="pull-right">
             <?= Html::a('<span class="glyphicon glyphicon-list"></span> '
-            . 'Full list', ['index'], ['class'=>'btn btn-default']) ?>
+                . Yii::t('ui', "Полный список"), ['index'], ['class' => 'btn btn-warning']) ?>
         </div>
 
     </div>
@@ -68,22 +63,28 @@ $this->params['breadcrumbs'][] = 'View';
 
     <?php $this->beginBlock('common\models\Room'); ?>
 
-    
+
     <?= DetailView::widget([
-    'model' => $model,
-    'attributes' => [
-            'number_rooms',
-        'number_of_students',
-        'room_type',
-        'status',
-        'is_deleted',
-    ],
+        'template' => "<tr><th style='width: 20%'>{label}</th><td>{value}</td></tr>",
+        'model' => $model,
+        'attributes' => [
+            'name',
+            'number_of_students',
+            'type',
+            [
+                'attribute' => 'status',
+                'value' => function (Room $model) {
+                    return RoomHelper::getStatusLabel($model->status);
+                },
+                'format' => 'raw'
+            ]
+        ],
     ]); ?>
 
     
     <hr/>
 
-    <?= Html::a('<span class="glyphicon glyphicon-trash"></span> ' . 'Delete', ['delete', 'id' => $model->id],
+    <?= Html::a('<span class="glyphicon glyphicon-trash"></span> ' . 'Удалить', ['delete', 'id' => $model->id],
     [
     'class' => 'btn btn-danger',
     'data-confirm' => '' . 'Are you sure to delete this item?' . '',
@@ -92,14 +93,14 @@ $this->params['breadcrumbs'][] = 'View';
     <?php $this->endBlock(); ?>
 
 
-    
+
     <?= Tabs::widget(
                  [
                      'id' => 'relation-tabs',
                      'encodeLabels' => false,
                      'items' => [
  [
-    'label'   => '<b class=""># '.Html::encode($model->id).'</b>',
+     'label' => '<b> <i class="fa fa-info-circle"></i> ' . Yii::t('ui', "Подробная информация") . '</b>',
     'content' => $this->blocks['common\models\Room'],
     'active'  => true,
 ],

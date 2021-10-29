@@ -19,11 +19,11 @@ use yii\widgets\ActiveForm;
 
     		<?= $form->field($model, 'id') ?>
 
-		<?= $form->field($model, 'number_rooms') ?>
+		<?= $form->field($model, 'name') ?>
 
 		<?= $form->field($model, 'number_of_students') ?>
 
-		<?= $form->field($model, 'room_type') ?>
+		<?= $form->field($model, 'type') ?>
 
 		<?= $form->field($model, 'status') ?>
 
