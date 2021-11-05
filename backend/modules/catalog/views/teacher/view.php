@@ -76,10 +76,8 @@ $this->params['breadcrumbs'][] = 'View';
             'phone',
             [
                 'attribute' => 'photo',
-                'value' => function (Teacher $model) {
-                    return Html::img( '/admin/uploads/' . $model->photo, ['style' => 'width: 300px;']);
-                },
-                'format' => 'raw'
+                'value' => $model->getPhotoSrc(),
+                'format' => ['image', ['width' => 100, 'height' => 100]]
             ],
             'address',
             [

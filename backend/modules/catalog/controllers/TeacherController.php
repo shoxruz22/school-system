@@ -42,7 +42,7 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
             if ($model->load($_POST)) {
                 $model->photoFile = UploadedFile::getInstance($model, 'photoFile');
                 if ($model->validate()) {
-                    $model->upload();
+                    $model->uploadPhoto();
                     Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
                     $model->save(false);
                     return $this->redirect(['index']);
