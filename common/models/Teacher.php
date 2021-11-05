@@ -11,6 +11,8 @@ use yii\helpers\ArrayHelper;
  */
 class Teacher extends BaseTeacher
 {
+    public $photoFile;
+
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 0;
 
@@ -35,14 +37,29 @@ class Teacher extends BaseTeacher
                 # custom validation rules
                 [['age', 'gender'], 'required'],
                 [['age'], 'number', 'min' => 18],
-
+                [['photoFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
             ]
         );
     }
+
     #region Getters
     public static function getCount()
     {
         return Teacher::find()->count();
     }
+
     #endregion
+
+
+    public function upload()
+    {
+        if ($this->validate()) {
+            $photoName = $this->photoFile->baseName . '.' . $this->photoFile->extension;
+            $this->photoFile->saveAs('uploads/' . $photoName);
+            $this->photo = $photoName;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

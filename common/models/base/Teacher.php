@@ -17,6 +17,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $phone
  * @property string $address
  * @property integer $gender
+ * @property string $photo
  * @property integer $status
  * @property integer $is_deleted
  * @property integer $created_at
@@ -61,7 +62,7 @@ abstract class Teacher extends \yii\db\ActiveRecord
         return [
             [['full_name', 'gender'], 'required'],
             [['age', 'gender', 'status', 'is_deleted'], 'integer'],
-            [['full_name', 'phone', 'address'], 'string', 'max' => 255]
+            [['full_name', 'phone', 'address', 'photo'], 'string', 'max' => 255]
         ];
     }
 
@@ -77,6 +78,7 @@ abstract class Teacher extends \yii\db\ActiveRecord
             'phone' => Yii::t('models', 'Phone'),
             'address' => Yii::t('models', 'Address'),
             'gender' => Yii::t('models', 'Gender'),
+            'photo' => Yii::t('models', 'Photo'),
             'status' => Yii::t('models', 'Status'),
             'is_deleted' => Yii::t('models', 'Is Deleted'),
             'created_at' => Yii::t('models', 'Created At'),

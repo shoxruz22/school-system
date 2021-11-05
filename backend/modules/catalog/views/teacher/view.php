@@ -10,9 +10,9 @@ use yii\widgets\Pjax;
 use dmstr\bootstrap\Tabs;
 
 /**
-* @var yii\web\View $this
-* @var common\models\Teacher $model
-*/
+ * @var yii\web\View $this
+ * @var common\models\Teacher $model
+ */
 $copyParams = $model->attributes;
 
 $this->title = Yii::t('models', 'Teacher');
@@ -61,31 +61,38 @@ $this->params['breadcrumbs'][] = 'View';
 
     <?php $this->beginBlock('common\models\Teacher'); ?>
 
-    
+
     <?= DetailView::widget([
-    'model' => $model,
-    'attributes' => [
+        'model' => $model,
+        'attributes' => [
             'full_name',
-        [
-            'attribute' => 'gender',
-            'value' => function (Teacher $model) {
-                return TeacherHelper::getGenderName($model->gender);
-            },
+            [
+                'attribute' => 'gender',
+                'value' => function (Teacher $model) {
+                    return TeacherHelper::getGenderName($model->gender);
+                },
+            ],
+            'age',
+            'phone',
+            [
+                'attribute' => 'photo',
+                'value' => function (Teacher $model) {
+                    return Html::img( '/admin/uploads/' . $model->photo, ['style' => 'width: 300px;']);
+                },
+                'format' => 'raw'
+            ],
+            'address',
+            [
+                'attribute' => 'status',
+                'value' => function (Teacher $model) {
+                    return TeacherHelper::getStatusLabel($model->status);
+                },
+                'format' => 'raw'
+            ]
         ],
-        'age',
-        'phone',
-        'address',
-        [
-            'attribute' => 'status',
-            'value' => function (Teacher $model) {
-                return TeacherHelper::getStatusLabel($model->status);
-            },
-            'format' => 'raw'
-        ]
-    ],
     ]); ?>
 
-    
+
     <hr/>
 
     <?=
@@ -99,19 +106,19 @@ $this->params['breadcrumbs'][] = 'View';
     <?php $this->endBlock(); ?>
 
 
-    
+
     <?= Tabs::widget(
-                 [
-                     'id' => 'relation-tabs',
-                     'encodeLabels' => false,
-                     'items' => [
- [
-     'label' => '<b> <i class="fa fa-info-circle"></i> ' . Yii::t('ui', "Подробная информация") . '</b>',
-    'content' => $this->blocks['common\models\Teacher'],
-    'active'  => true,
-],
- ]
-                 ]
+        [
+            'id' => 'relation-tabs',
+            'encodeLabels' => false,
+            'items' => [
+                [
+                    'label' => '<b> <i class="fa fa-info-circle"></i> ' . Yii::t('ui', "Подробная информация") . '</b>',
+                    'content' => $this->blocks['common\models\Teacher'],
+                    'active' => true,
+                ],
+            ]
+        ]
     );
     ?>
 </div>

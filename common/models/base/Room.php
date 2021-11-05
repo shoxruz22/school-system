@@ -9,7 +9,7 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the base-model class for table "room".
+ * This is the base-model class for table "_room".
  *
  * @property integer $id
  * @property string $name
@@ -33,7 +33,7 @@ abstract class Room extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'room';
+        return '_room';
     }
 
     /**
