@@ -12,7 +12,7 @@ class m211029_145935_create_room_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('{{%room}}', [
+        $this->createTable('{{_room}}', [
             'id' => $this->primaryKey(),
             'name'=> $this->string('255')->notNull(),
             'number_of_students'=>$this->tinyInteger()->notNull(),
@@ -31,6 +31,6 @@ class m211029_145935_create_room_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%room}}');
+        $this->dropTable('{{_room}}');
     }
 }

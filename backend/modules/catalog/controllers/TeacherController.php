@@ -7,10 +7,11 @@ use common\models\Teacher;
 use dmstr\bootstrap\Tabs;
 use Yii;
 use yii\helpers\Url;
+use yii\web\UploadedFile;
 
 /**
-* This is the class for controller "TeacherController".
-*/
+ * This is the class for controller "TeacherController".
+ */
 class TeacherController extends \backend\modules\catalog\controllers\base\TeacherController
 {
     /**
@@ -19,7 +20,7 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
      */
     public function actionIndex()
     {
-        $searchModel  = new TeacherSearch;
+        $searchModel = new TeacherSearch;
         $dataProvider = $searchModel->search($_GET);
 
         return $this->render('index', [
@@ -38,14 +39,19 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
         $model = new Teacher;
 
         try {
-            if ($model->load($_POST) && $model->save()) {
-                Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
-                return $this->redirect(['index']);
-            } elseif (!\Yii::$app->request->isPost) {
-                $model->load($_GET);
+            if ($model->load($_POST)) {
+                $model->photoFile = UploadedFile::getInstance($model, 'photoFile');
+                if ($model->validate()) {
+                    $model->uploadPhoto();
+                    Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
+                    $model->save(false);
+                    return $this->redirect(['index']);
+                } elseif (!\Yii::$app->request->isPost) {
+                    $model->load($_GET);
+                }
             }
         } catch (\Exception $e) {
-            $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
+            $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
             $model->addError('_exception', $msg);
         }
         return $this->render('create', ['model' => $model]);
@@ -83,7 +89,7 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
             $this->findModel($id)->delete();
             Yii::$app->session->setFlash('success', Yii::t('ui', "Данные успешно удалено"));
         } catch (\Exception $e) {
-            $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
+            $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
             \Yii::$app->getSession()->addFlash('error', $msg);
             return $this->redirect(Url::previous());
         }
