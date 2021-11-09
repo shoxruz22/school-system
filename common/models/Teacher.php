@@ -81,7 +81,7 @@ class Teacher extends BaseTeacher
 
     public function deletePhoto(): bool
     {
-        unlink(self::getPhotoAlias() . '/' . $this->photo);
+        return unlink(self::getPhotoAlias() . '/' . $this->photo);
     }
 
     public function generatePhotoName()
