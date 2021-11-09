@@ -33,4 +33,15 @@ class Subject extends BaseSubject
             ]
         );
     }
+
+    #region iSOLID
+    public static function create($name, $status)
+    {
+        $model = new Subject;
+        $model->name = $name;
+        $model->status = $status;
+
+        return $model;
+    }
+    #endregion
 }
