@@ -59,7 +59,7 @@ class Teacher extends BaseTeacher
         return ++$lastId;
     }
 
-    public function getPhotoAlias()
+    public static function getPhotoAlias()
     {
         return Yii::getAlias('@appRoot') . self::PATH_PHOTO;
     }
@@ -71,16 +71,32 @@ class Teacher extends BaseTeacher
 
     #endregion
 
+    #region Checker
+    public function isPhotoExists(): bool
+    {
+        return file_exists(self::getPhotoAlias() . '/' . $this->photo);
+    }
+
+    #endregion
+
+    public function deletePhoto(): bool
+    {
+        unlink(self::getPhotoAlias() . '/' . $this->photo);
+    }
 
     public function generatePhotoName()
     {
-        return 'teacher_' . $this->getLastId() . '-' . (int)(microtime(true) * (1000)) . '.' . $this->photoFile->extension;
+        if (self::getIsNewRecord()) {
+            return 'teacher_' . $this->getLastId() . '-' . (int)(microtime(true) * (1000)) . '.' . $this->photoFile->extension;
+        } else {
+            return 'teacher_' . $this->id . '-' . (int)(microtime(true) * (1000)) . '.' . $this->photoFile->extension;
+        }
     }
 
     public function uploadPhoto()
     {
         if ($this->validate()) {
-            $path = $this->getPhotoAlias();
+            $path = self::getPhotoAlias();
             if (!file_exists($path)) {
                 mkdir($path, 0777, true);
             }
@@ -91,5 +107,13 @@ class Teacher extends BaseTeacher
         } else {
             return false;
         }
+    }
+
+    public function updatePhoto()
+    {
+        if ($this->isPhotoExists()) {
+            $this->deletePhoto();
+        }
+        $this->uploadPhoto();
     }
 }

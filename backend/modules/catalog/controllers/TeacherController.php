@@ -39,14 +39,14 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
         $model = new Teacher;
 
         try {
-            if ($model->load($_POST)) {
+            if ($model->load(Yii::$app->request->post())) {
                 $model->photoFile = UploadedFile::getInstance($model, 'photoFile');
                 if ($model->validate()) {
                     $model->uploadPhoto();
-                    Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
                     $model->save(false);
+                    Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
                     return $this->redirect(['index']);
-                } elseif (!\Yii::$app->request->isPost) {
+                } elseif (!Yii::$app->request->isPost) {
                     $model->load($_GET);
                 }
             }
@@ -67,8 +67,14 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
     {
         $model = $this->findModel($id);
 
-        if ($model->load($_POST) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->photoFile = UploadedFile::getInstance($model, 'photoFile');
+            if ($model->validate()) {
+                $model->updatePhoto();
+                $model->save(false);
+                Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
+                return $this->redirect(['index']);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -85,8 +91,10 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
      */
     public function actionDelete($id)
     {
+        $model = $this->findModel($id);
         try {
-            $this->findModel($id)->delete();
+            $model->delete();
+            $model->deletePhoto();
             Yii::$app->session->setFlash('success', Yii::t('ui', "Данные успешно удалено"));
         } catch (\Exception $e) {
             $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
