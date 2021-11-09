@@ -13,8 +13,6 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property integer $id
  * @property integer $subject_id
- * @property integer $type
- * @property string $datetime
  * @property integer $price
  * @property integer $status
  * @property integer $is_deleted
@@ -61,8 +59,7 @@ abstract class SubjectPrice extends \yii\db\ActiveRecord
     {
         return [
             [['subject_id'], 'required'],
-            [['subject_id', 'type', 'price', 'status', 'is_deleted'], 'integer'],
-            [['datetime'], 'safe'],
+            [['subject_id', 'price', 'status', 'is_deleted'], 'integer'],
             [['subject_id'], 'exist', 'skipOnError' => true, 'targetClass' => \common\models\Subject::className(), 'targetAttribute' => ['subject_id' => 'id']]
         ];
     }
@@ -75,8 +72,6 @@ abstract class SubjectPrice extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('models', 'ID'),
             'subject_id' => Yii::t('models', 'Subject ID'),
-            'type' => Yii::t('models', 'Type'),
-            'datetime' => Yii::t('models', 'Datetime'),
             'price' => Yii::t('models', 'Price'),
             'status' => Yii::t('models', 'Status'),
             'is_deleted' => Yii::t('models', 'Is Deleted'),

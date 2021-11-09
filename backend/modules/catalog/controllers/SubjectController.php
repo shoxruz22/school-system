@@ -2,13 +2,13 @@
 
 namespace backend\modules\catalog\controllers;
 
-use common\models\Subject;
+use backend\modules\catalog\forms\SubjectCreateForm;
 use Yii;
 use yii\helpers\Url;
 
 /**
-* This is the class for controller "SubjectController".
-*/
+ * This is the class for controller "SubjectController".
+ */
 class SubjectController extends \backend\modules\catalog\controllers\base\SubjectController
 {
     /**
@@ -18,20 +18,21 @@ class SubjectController extends \backend\modules\catalog\controllers\base\Subjec
      */
     public function actionCreate()
     {
-        $model = new Subject;
+        $form = new SubjectCreateForm;
 
         try {
-            if ($model->load($_POST) && $model->save()) {
+            if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+                $form->saveData();
                 Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
-                return $this->redirect(['index', 'id' => $model->id]);
-            } elseif (!\Yii::$app->request->isPost) {
-                $model->load($_GET);
+                return $this->redirect(['index']);
             }
         } catch (\Exception $e) {
-            $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
-            $model->addError('_exception', $msg);
+            $msg = $e->errorInfo[2] ?? $e->getMessage();
+            $form->addError('_exception', $msg);
         }
-        return $this->render('create', ['model' => $model]);
+        return $this->render('create', [
+            'createForm' => $form
+        ]);
     }
 
     /**
@@ -66,13 +67,13 @@ class SubjectController extends \backend\modules\catalog\controllers\base\Subjec
 
             $this->findModel($id)->delete();
         } catch (\Exception $e) {
-            $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
+            $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
             \Yii::$app->getSession()->addFlash('error', $msg);
             return $this->redirect(Url::previous());
         }
 
 // TODO: improve detection
-        $isPivot = strstr('$id',',');
+        $isPivot = strstr('$id', ',');
         if ($isPivot == true) {
             return $this->redirect(Url::previous());
         } elseif (isset(\Yii::$app->session['__crudReturnUrl']) && \Yii::$app->session['__crudReturnUrl'] != '/') {
