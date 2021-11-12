@@ -9,10 +9,11 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the base-model class for table "_subject".
+ * This is the base-model class for table "_rel_teacher_subject".
  *
  * @property integer $id
- * @property string $name
+ * @property integer $teacher_id
+ * @property integer $subject_id
  * @property integer $status
  * @property integer $is_deleted
  * @property integer $created_at
@@ -20,11 +21,11 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $created_by
  * @property integer $updated_by
  *
- * @property \common\models\RelTeacherSubject[] $relTeacherSubjects
- * @property \common\models\SubjectPrice[] $subjectPrices
+ * @property \common\models\Subject $subject
+ * @property \common\models\Teacher $teacher
  * @property string $aliasModel
  */
-abstract class Subject extends \yii\db\ActiveRecord
+abstract class RelTeacherSubject extends \yii\db\ActiveRecord
 {
 
 
@@ -34,7 +35,7 @@ abstract class Subject extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '_subject';
+        return '_rel_teacher_subject';
     }
 
     /**
@@ -58,8 +59,10 @@ abstract class Subject extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status', 'is_deleted'], 'integer'],
-            [['name'], 'string', 'max' => 255]
+            [['teacher_id', 'subject_id'], 'required'],
+            [['teacher_id', 'subject_id', 'status', 'is_deleted'], 'integer'],
+            [['subject_id'], 'exist', 'skipOnError' => true, 'targetClass' => \common\models\Subject::className(), 'targetAttribute' => ['subject_id' => 'id']],
+            [['teacher_id'], 'exist', 'skipOnError' => true, 'targetClass' => \common\models\Teacher::className(), 'targetAttribute' => ['teacher_id' => 'id']]
         ];
     }
 
@@ -70,7 +73,8 @@ abstract class Subject extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'name' => Yii::t('models', 'Name'),
+            'teacher_id' => Yii::t('models', 'Teacher ID'),
+            'subject_id' => Yii::t('models', 'Subject ID'),
             'status' => Yii::t('models', 'Status'),
             'is_deleted' => Yii::t('models', 'Is Deleted'),
             'created_at' => Yii::t('models', 'Created At'),
@@ -83,28 +87,28 @@ abstract class Subject extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRelTeacherSubjects()
+    public function getSubject()
     {
-        return $this->hasMany(\common\models\RelTeacherSubject::className(), ['subject_id' => 'id']);
+        return $this->hasOne(\common\models\Subject::className(), ['id' => 'subject_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSubjectPrices()
+    public function getTeacher()
     {
-        return $this->hasMany(\common\models\SubjectPrice::className(), ['subject_id' => 'id']);
+        return $this->hasOne(\common\models\Teacher::className(), ['id' => 'teacher_id']);
     }
 
 
     
     /**
      * @inheritdoc
-     * @return \common\models\query\SubjectQuery the active query used by this AR class.
+     * @return \common\models\query\RelTeacherSubjectQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\SubjectQuery(get_called_class());
+        return new \common\models\query\RelTeacherSubjectQuery(get_called_class());
     }
 
 

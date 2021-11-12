@@ -61,5 +61,22 @@ class SubjectPrice extends BaseSubjectPrice
         $model->status = self::STATUS_ACTIVE;
         return $model;
     }
+
+    public static function createBySubjectId(
+        $subject_id,
+        $price
+    )
+    {
+        $model = new SubjectPrice();
+        $model->subject_id = $subject_id;
+        $model->price = $price;
+        $model->status = self::STATUS_ACTIVE;
+        return $model;
+    }
+
+    public function inactivate()
+    {
+        $this->status = self::STATUS_INACTIVE;
+    }
     #endregion
 }

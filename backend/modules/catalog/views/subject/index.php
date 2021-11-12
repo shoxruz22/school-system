@@ -1,7 +1,6 @@
 <?php
 
 
-
 use common\helpers\SubjectHelper;
 use common\models\Subject;
 use yii\helpers\Html;
@@ -10,47 +9,40 @@ use kartik\grid\GridView;
 use yii\widgets\Pjax;
 
 /**
-* @var yii\web\View $this
-* @var yii\data\ActiveDataProvider $dataProvider
-    * @var common\models\search\SubjectSearch $searchModel
-*/
+ * @var yii\web\View $this
+ * @var yii\data\ActiveDataProvider $dataProvider
+ * @var common\models\search\SubjectSearch $searchModel
+ */
 
 $this->title = Yii::t('models', 'Subjects');
 $this->params['breadcrumbs'][] = $this->title;
 
 if (isset($actionColumnTemplates)) {
-$actionColumnTemplate = implode(' ', $actionColumnTemplates);
+    $actionColumnTemplate = implode(' ', $actionColumnTemplates);
     $actionColumnTemplateString = $actionColumnTemplate;
 } else {
-Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphicon-plus"></span> ' . 'New', ['create'], ['class' => 'btn btn-success']);
+    Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphicon-plus"></span> ' . 'New', ['create'], ['class' => 'btn btn-success']);
     $actionColumnTemplateString = "{view} {update} {delete}";
 }
-$actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTemplateString.'</div>';
+$actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemplateString . '</div>';
 ?>
-<div class="giiant-crud subject-index">
+<div class="subject-index">
 
     <h1>
         <?= he($this->title) ?>
     </h1>
-    
-    <?php \yii\widgets\Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
 
+    <?php Pjax::begin(['id' => 'pjax-main', 'enableReplaceState' => false, 'linkSelector' => '#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success' => 'function(){alert("yo")}']]) ?>
 
     <div class="clearfix crud-navigation">
         <div class="pull-left">
             <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui', "Добавить"), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
-
-        <div class="pull-right">
-
-                        
-
-        </div>
     </div>
 
-    <hr />
+    <hr/>
 
-    <div>
+    <section>
         <?php
         $gridColumns = [
             [
@@ -58,14 +50,20 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'headerOptions' => ['style' => 'width: 5%', 'class' => 'text-center'],
                 'contentOptions' => ['class' => 'text-center'],
             ],
-
             [
                 'attribute' => 'name',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
             ],
             [
+                'attribute' => 'viewActivePrice',
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '150px'
+            ],
+            [
                 'attribute' => 'status',
+                'width' => '150px',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function (Subject $model) {
@@ -144,11 +142,8 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
             'toggleDataOptions' => ['minCount' => 10],
         ]);
         ?>
-    </div>
+    </section>
 
+    <?php Pjax::end() ?>
 
-
-
-<?php \yii\widgets\Pjax::end() ?>
-
-
+</div>

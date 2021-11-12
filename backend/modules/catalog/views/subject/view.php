@@ -9,9 +9,9 @@ use dmstr\bootstrap\Tabs;
 
 
 /**
-* @var yii\web\View $this
-* @var common\models\Subject $model
-*/
+ * @var yii\web\View $this
+ * @var common\models\Subject $model
+ */
 $copyParams = $model->attributes;
 
 $this->title = Yii::t('models', 'Subject');
@@ -61,39 +61,41 @@ $this->params['breadcrumbs'][] = 'View';
 
     <?php $this->beginBlock('common\models\Subject'); ?>
 
-    
+
     <?= DetailView::widget([
-    'model' => $model,
-    'attributes' => [
-        'name',
-    ],
+        'model' => $model,
+        'template' => "<tr><th style='width: 20%'>{label}</th><td>{value}</td></tr>",
+        'attributes' => [
+            'name',
+            'viewActivePrice'
+        ],
     ]); ?>
 
-    
+
     <hr/>
 
     <?= Html::a('<span class="glyphicon glyphicon-trash"></span> ' . 'Удалить', ['delete', 'id' => $model->id],
-    [
-    'class' => 'btn btn-danger',
-    'data-confirm' => '' . 'Вы уверены, что хотите удалить этот элемент?' . '',
-    'data-method' => 'post',
-    ]); ?>
+        [
+            'class' => 'btn btn-danger',
+            'data-confirm' => '' . 'Вы уверены, что хотите удалить этот элемент?' . '',
+            'data-method' => 'post',
+        ]); ?>
     <?php $this->endBlock(); ?>
 
 
 
     <?= Tabs::widget(
-                 [
-                     'id' => 'relation-tabs',
-                     'encodeLabels' => false,
-                     'items' => [
- [
-     'label' => '<b> <i class="fa fa-info-circle"></i> ' . Yii::t('ui', "Подробная информация") . '</b>',
-    'content' => $this->blocks['common\models\Subject'],
-    'active'  => true,
-],
- ]
-                 ]
+        [
+            'id' => 'relation-tabs',
+            'encodeLabels' => false,
+            'items' => [
+                [
+                    'label' => '<b> <i class="fa fa-info-circle"></i> ' . Yii::t('ui', "Подробная информация") . '</b>',
+                    'content' => $this->blocks['common\models\Subject'],
+                    'active' => true,
+                ],
+            ]
+        ]
     );
     ?>
 </div>
