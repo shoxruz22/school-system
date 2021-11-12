@@ -34,6 +34,40 @@ class Subject extends BaseSubject
         );
     }
 
+    public function attributeLabels()
+    {
+        return ArrayHelper::merge(
+            parent::attributeLabels(),
+            [
+                'viewActivePrice' => Yii::t('ui', 'Сумма')
+            ]
+        );
+    }
+
+    #region Checkers
+    public function isCurrentPrice($price)
+    {
+        return $this->getActivePrice() === $price;
+    }
+    #endregion
+
+    #region Getter
+    public function getActivePrice()
+    {
+        return $this->getSubjectPrices()
+            ->select('price')
+            ->active()
+            ->scalar();
+    }
+    #endregion
+
+    #region Viewer
+    public function getViewActivePrice()
+    {
+        return nf($this->getActivePrice());
+    }
+    #endregion
+
     #region iSOLID
     public static function create($name, $status)
     {
@@ -42,6 +76,12 @@ class Subject extends BaseSubject
         $model->status = $status;
 
         return $model;
+    }
+
+    public function editData($name, $status)
+    {
+        $this->name = $name;
+        $this->status = $status;
     }
     #endregion
 }

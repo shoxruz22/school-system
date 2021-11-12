@@ -3,6 +3,7 @@
 namespace backend\modules\catalog\controllers;
 
 use backend\modules\catalog\forms\SubjectCreateForm;
+use backend\modules\catalog\forms\SubjectUpdateForm;
 use Yii;
 use yii\helpers\Url;
 
@@ -44,14 +45,23 @@ class SubjectController extends \backend\modules\catalog\controllers\base\Subjec
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $form = new SubjectUpdateForm($model);
 
-        if ($model->load($_POST) && $model->save()) {
-            return $this->redirect(Url::previous());
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        try {
+            if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+                $form->saveData();
+                Yii::$app->session->setFlash('success', Yii::t('ui', "Данные успешно обновлены"));
+                return $this->redirect(['index']);
+            }
+        } catch (\Exception $e) {
+            $msg = $e->errorInfo[2] ?? $e->getMessage();
+            $form->addError('_exception', $msg);
         }
+
+        return $this->render('update', [
+            'updateForm' => $form,
+            'model' => $model,
+        ]);
     }
 
     /**
