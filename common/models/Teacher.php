@@ -43,6 +43,7 @@ class Teacher extends BaseTeacher
                 [['photoFile'], 'file', 'skipOnEmpty'=> false, 'extensions' => 'png, jpg'],
 =======
 >>>>>>> 64dbf3d84275ff0e98f74bc5ee8850148793e699
+
             ]
         );
     }
