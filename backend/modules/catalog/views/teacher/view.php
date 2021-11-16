@@ -72,6 +72,12 @@ $this->params['breadcrumbs'][] = 'View';
                     return TeacherHelper::getGenderName($model->gender);
                 },
             ],
+            [
+                'attribute' => 'subjectList',
+                'value' => function (Teacher $model) {
+                    return $model->getSubjectsText();
+                },
+            ],
             'age',
             'phone',
             [
@@ -86,7 +92,8 @@ $this->params['breadcrumbs'][] = 'View';
                     return TeacherHelper::getStatusLabel($model->status);
                 },
                 'format' => 'raw'
-            ]
+            ],
+
         ],
     ]); ?>
 

@@ -2,6 +2,8 @@
 
 namespace common\models\query;
 
+use common\models\Subject;
+
 /**
  * This is the ActiveQuery class for [[\app\models\Subject]].
  *
@@ -9,11 +11,7 @@ namespace common\models\query;
  */
 class SubjectQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
-    {
-        $this->andWhere('[[status]]=1');
-        return $this;
-    }*/
+    public $tableName = '_subject';
 
     /**
      * @inheritdoc
@@ -31,5 +29,10 @@ class SubjectQuery extends \yii\db\ActiveQuery
     public function one($db = null)
     {
         return parent::one($db);
+    }
+
+    public function active()
+    {
+        return $this->andWhere(["$this->tableName.status" => Subject::STATUS_ACTIVE]);
     }
 }

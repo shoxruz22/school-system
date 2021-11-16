@@ -9,11 +9,10 @@ use yii\helpers\Url;
 
 /**
  * This is the model class for table "teacher".
+ * @property \common\models\Subject[] $subjects
  */
 class Teacher extends BaseTeacher
 {
-    public $photoFile;
-
     const PATH_PHOTO = '/uploads/photos/teacher';
 
     const GENDER_MALE = 1;
@@ -40,18 +39,36 @@ class Teacher extends BaseTeacher
                 # custom validation rules
                 [['age', 'gender'], 'required'],
                 [['age'], 'number', 'min' => 18],
+<<<<<<< HEAD
                 [['photoFile'], 'file', 'skipOnEmpty'=> false, 'extensions' => 'png, jpg'],
+=======
+>>>>>>> 64dbf3d84275ff0e98f74bc5ee8850148793e699
             ]
         );
     }
 
+    public function getSubjects()
+    {
+        return $this->hasMany(Subject::class, ['id' => 'subject_id'])
+            ->via('relTeacherSubjects');
+    }
+
     #region Getters
+    public function getSubjectsText()
+    {
+        $result = '';
+        foreach ($this->subjects as $subject) {
+            $result .= $subject->name . '; ';
+        }
+        return $result;
+    }
+
     public static function getCount()
     {
         return Teacher::find()->count();
     }
 
-    public function getLastId()
+    public static function getLastId()
     {
         $lastId = Teacher::find()->select('id')
             ->orderBy(['id' => SORT_DESC])
@@ -87,7 +104,7 @@ class Teacher extends BaseTeacher
     public function generatePhotoName()
     {
         if (self::getIsNewRecord()) {
-            return 'teacher_' . $this->getLastId() . '-' . (int)(microtime(true) * (1000)) . '.' . $this->photoFile->extension;
+            return 'teacher_' . self::getLastId() . '-' . (int)(microtime(true) * (1000)) . '.' . $this->photoFile->extension;
         } else {
             return 'teacher_' . $this->id . '-' . (int)(microtime(true) * (1000)) . '.' . $this->photoFile->extension;
         }
@@ -116,4 +133,37 @@ class Teacher extends BaseTeacher
         }
         $this->uploadPhoto();
     }
+
+    #region iSOLID
+    public function addSubjects(array $subject_list)
+    {
+        foreach ($subject_list as $subject_id) {
+            $subjectModel = Subject::findOne($subject_id);
+            $this->link('subjects', $subjectModel);
+        }
+    }
+
+    public static function create(
+        $full_name,
+        $gender,
+        $age,
+        $phone,
+        $photo_db,
+        $address,
+        $status
+    )
+    {
+        $newModel = new Teacher;
+
+        $newModel->full_name = $full_name;
+        $newModel->gender = $gender;
+        $newModel->age = $age;
+        $newModel->phone = $phone;
+        $newModel->photo = $photo_db;
+        $newModel->address = $address;
+        $newModel->status = $status;
+
+        return $newModel;
+    }
+    #endregion
 }
