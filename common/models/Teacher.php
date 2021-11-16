@@ -9,6 +9,7 @@ use yii\helpers\Url;
 
 /**
  * This is the model class for table "teacher".
+ * @property \common\models\Subject[] $subjects
  */
 class Teacher extends BaseTeacher
 {
@@ -42,12 +43,22 @@ class Teacher extends BaseTeacher
         );
     }
 
-    public function getSubjects() {
+    public function getSubjects()
+    {
         return $this->hasMany(Subject::class, ['id' => 'subject_id'])
             ->via('relTeacherSubjects');
     }
 
     #region Getters
+    public function getSubjectsText()
+    {
+        $result = '';
+        foreach ($this->subjects as $subject) {
+            $result .= $subject->name . '; ';
+        }
+        return $result;
+    }
+
     public static function getCount()
     {
         return Teacher::find()->count();
@@ -120,6 +131,14 @@ class Teacher extends BaseTeacher
     }
 
     #region iSOLID
+    public function addSubjects(array $subject_list)
+    {
+        foreach ($subject_list as $subject_id) {
+            $subjectModel = Subject::findOne($subject_id);
+            $this->link('subjects', $subjectModel);
+        }
+    }
+
     public static function create(
         $full_name,
         $gender,

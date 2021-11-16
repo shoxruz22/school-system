@@ -71,10 +71,7 @@ class TeacherCreateForm extends Model
             if (!$teacherModel->save()) {
                 throw new \Exception('Произошла ошибка при сохранении данных.');
             }
-            foreach ($this->subject_list as $subject_id) {
-                $subjectModel = Subject::findOne($subject_id);
-                $teacherModel->link('subjects', $subjectModel);
-            }
+            $teacherModel->addSubjects($this->subject_list);
             Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
             $transaction->commit();
         } catch (\Exception $e) {

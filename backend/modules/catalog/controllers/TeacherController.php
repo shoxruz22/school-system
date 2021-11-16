@@ -85,6 +85,21 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
         }
     }
 
+    /**
+     * Displays a single Teacher model.
+     * @param integer $id
+     *
+     * @return mixed
+     */
+    public function actionView($id)
+    {
+        $model = $this->findModel($id);
+
+        return $this->render('view', [
+            'model' => $model,
+        ]);
+    }
+
 
     /**
      * Deletes an existing Teacher model.
