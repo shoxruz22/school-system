@@ -4,7 +4,6 @@ namespace backend\modules\catalog\controllers;
 
 use common\models\search\TeacherSearch;
 use common\models\Teacher;
-use dmstr\bootstrap\Tabs;
 use Yii;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
