@@ -2,6 +2,7 @@
 
 namespace backend\modules\catalog\controllers;
 
+use backend\modules\catalog\forms\TeacherCreateForm;
 use common\models\search\TeacherSearch;
 use common\models\Teacher;
 use dmstr\bootstrap\Tabs;
@@ -36,25 +37,27 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
      */
     public function actionCreate()
     {
-        $model = new Teacher;
+        $form = new TeacherCreateForm;
 
         try {
-            if ($model->load(Yii::$app->request->post())) {
-                $model->photoFile = UploadedFile::getInstance($model, 'photoFile');
-                if ($model->validate()) {
-                    $model->uploadPhoto();
-                    $model->save(false);
+            if ($form->load(Yii::$app->request->post())) {
+                $form->photoFile = UploadedFile::getInstance($form, 'photoFile');
+                if ($form->validate()) {
+                    $form->uploadPhoto();
+                    $form->saveData();
                     Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
                     return $this->redirect(['index']);
                 } elseif (!Yii::$app->request->isPost) {
-                    $model->load($_GET);
+                    $form->load($_GET);
                 }
             }
         } catch (\Exception $e) {
-            $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
-            $model->addError('_exception', $msg);
+            $msg = $e->errorInfo[2] ?? $e->getMessage();
+            $form->addError('_exception', $msg);
         }
-        return $this->render('create', ['model' => $model]);
+        return $this->render('create', [
+            'createForm' => $form
+        ]);
     }
 
     /**

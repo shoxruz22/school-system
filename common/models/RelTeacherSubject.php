@@ -11,6 +11,8 @@ use yii\helpers\ArrayHelper;
  */
 class RelTeacherSubject extends BaseRelTeacherSubject
 {
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
 
     public function behaviors()
     {
@@ -31,4 +33,17 @@ class RelTeacherSubject extends BaseRelTeacherSubject
             ]
         );
     }
+
+    #region iSOLID
+    public static function createByTeacher($teacher_id, $subject_id)
+    {
+        $newModel = new RelTeacherSubject;
+
+        $newModel->teacher_id = $teacher_id;
+        $newModel->subject_id = $subject_id;
+        $newModel->status = RelTeacherSubject::STATUS_ACTIVE;
+
+        return $newModel;
+    }
+    #endregion
 }

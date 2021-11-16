@@ -2,6 +2,7 @@
 
 namespace common\helpers;
 
+use common\models\Subject;
 use common\models\Teacher;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -46,6 +47,16 @@ class TeacherHelper
             Teacher::GENDER_MALE => Yii::t('models', 'Male'),
             Teacher::GENDER_FEMALE => Yii::t('models', 'Female'),
         ];
+    }
+
+    public static function getSubjectList(): array
+    {
+        $result = [];
+        $subjectList = Subject::find()->active()->all();
+        foreach ($subjectList as $item) {
+            $result[$item->id] = $item->name;
+        }
+        return $result;
     }
 
     public static function getGenderName(int $gender): string
