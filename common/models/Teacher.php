@@ -42,6 +42,11 @@ class Teacher extends BaseTeacher
         );
     }
 
+    public function getSubjects() {
+        return $this->hasMany(Subject::class, ['id' => 'subject_id'])
+            ->via('relTeacherSubjects');
+    }
+
     #region Getters
     public static function getCount()
     {

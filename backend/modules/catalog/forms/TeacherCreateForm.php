@@ -3,6 +3,7 @@
 namespace backend\modules\catalog\forms;
 
 use common\models\RelTeacherSubject;
+use common\models\Subject;
 use common\models\Teacher;
 use Yii;
 use yii\base\Model;
@@ -71,11 +72,8 @@ class TeacherCreateForm extends Model
                 throw new \Exception('Произошла ошибка при сохранении данных.');
             }
             foreach ($this->subject_list as $subject_id) {
-                $relModel = RelTeacherSubject::createByTeacher(
-                    $teacherModel->id,
-                    $subject_id
-                );
-                $relModel->save();
+                $subjectModel = Subject::findOne($subject_id);
+                $teacherModel->link('subjects', $subjectModel);
             }
             Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
             $transaction->commit();
