@@ -80,6 +80,7 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
                 'model' => $model,
             ]);
         }
+
     }
 
 
@@ -96,6 +97,7 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
             $model->delete();
             $model->deletePhoto();
             Yii::$app->session->setFlash('success', Yii::t('ui', "Данные успешно удалено"));
+            return $this->redirect(['index']);
         } catch (\Exception $e) {
             $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
             \Yii::$app->getSession()->addFlash('error', $msg);
