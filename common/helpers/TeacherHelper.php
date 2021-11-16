@@ -51,12 +51,16 @@ class TeacherHelper
 
     public static function getSubjectList(): array
     {
-        $result = [];
-        $subjectList = Subject::find()->active()->all();
-        foreach ($subjectList as $item) {
-            $result[$item->id] = $item->name;
-        }
-        return $result;
+        $subjectList = Subject::find()
+            ->select('_subject.id, _subject.name, sp.price AS subject_price')
+            ->leftJoin('_subject_price AS sp', 'sp.subject_id=_subject.id')
+            ->active()
+            ->asArray()
+            ->all();
+
+        return ArrayHelper::map($subjectList, 'id', function ($model) {
+            return $model['name'] . ' (' . nf($model['subject_price']) . ')';
+        });
     }
 
     public static function getGenderName(int $gender): string

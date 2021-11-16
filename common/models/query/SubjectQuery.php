@@ -11,11 +11,7 @@ use common\models\Subject;
  */
 class SubjectQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
-    {
-        $this->andWhere('[[status]]=1');
-        return $this;
-    }*/
+    public $tableName = '_subject';
 
     /**
      * @inheritdoc
@@ -37,6 +33,6 @@ class SubjectQuery extends \yii\db\ActiveQuery
 
     public function active()
     {
-        return $this->andWhere(['status' => Subject::STATUS_ACTIVE]);
+        return $this->andWhere(["$this->tableName.status" => Subject::STATUS_ACTIVE]);
     }
 }
