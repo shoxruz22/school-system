@@ -166,5 +166,24 @@ class Teacher extends BaseTeacher
 
         return $newModel;
     }
+
+    public function editData(
+        $full_name,
+        $gender,
+        $age,
+        $phone,
+        $photo_db,
+        $address,
+        $status
+    )
+    {
+        $this->full_name = $full_name;
+        $this->gender = $gender;
+        $this->age = $age;
+        $this->phone = $phone;
+        $this->photo = $photo_db;
+        $this->address = $address;
+        $this->status = $status;
+    }
     #endregion
 }
