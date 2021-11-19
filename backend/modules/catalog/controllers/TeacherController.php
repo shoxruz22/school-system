@@ -3,6 +3,7 @@
 namespace backend\modules\catalog\controllers;
 
 use backend\modules\catalog\forms\TeacherCreateForm;
+use backend\modules\catalog\forms\TeacherUpdateForm;
 use common\models\search\TeacherSearch;
 use common\models\Teacher;
 use dmstr\bootstrap\Tabs;
@@ -69,18 +70,22 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $form = new TeacherUpdateForm($model);
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->photoFile = UploadedFile::getInstance($model, 'photoFile');
-            if ($model->validate()) {
-                $model->updatePhoto();
-                $model->save(false);
-                Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
-                return $this->redirect(['index']);
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            $form->photo_file = UploadedFile::getInstance($form, 'photo_file');
+
+            if ($form->photo_file !== null) {
+                $form->updatePhoto();
             }
+
+            $form->saveData();
+            Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                'teacherModel' => $model,
+                'updateForm' => $form
             ]);
         }
     }
