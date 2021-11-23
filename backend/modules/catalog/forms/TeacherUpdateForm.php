@@ -2,8 +2,6 @@
 
 namespace backend\modules\catalog\forms;
 
-use common\models\Subject;
-use common\models\SubjectPrice;
 use common\models\Teacher;
 use Yii;
 use yii\base\Model;

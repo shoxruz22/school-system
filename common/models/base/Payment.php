@@ -9,22 +9,23 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the base-model class for table "_subject".
+ * This is the base-model class for table "payment".
  *
  * @property integer $id
- * @property string $name
+ * @property string $expenditure
+ * @property string $date
+ * @property string $description
+ * @property integer $type
+ * @property integer $amount
  * @property integer $status
  * @property integer $is_deleted
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $created_by
  * @property integer $updated_by
- *
- * @property \common\models\RelTeacherSubject[] $relTeacherSubjects
- * @property \common\models\SubjectPrice[] $subjectPrices
  * @property string $aliasModel
  */
-abstract class Subject extends \yii\db\ActiveRecord
+abstract class Payment extends \yii\db\ActiveRecord
 {
 
 
@@ -34,7 +35,7 @@ abstract class Subject extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '_subject';
+        return 'payment';
     }
 
     /**
@@ -58,8 +59,11 @@ abstract class Subject extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status', 'is_deleted'], 'integer'],
-            [['name'], 'string', 'max' => 255]
+            [['expenditure', 'date', 'type'], 'required'],
+            [['date'], 'safe'],
+            [['description'], 'string'],
+            [['type', 'amount', 'status', 'is_deleted'], 'integer'],
+            [['expenditure'], 'string', 'max' => 255]
         ];
     }
 
@@ -70,7 +74,11 @@ abstract class Subject extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'name' => Yii::t('models', 'Name'),
+            'expenditure' => Yii::t('models', 'Expenditure'),
+            'date' => Yii::t('models', 'Date'),
+            'description' => Yii::t('models', 'Description'),
+            'type' => Yii::t('models', 'Type'),
+            'amount' => Yii::t('models', 'Amount'),
             'status' => Yii::t('models', 'Status'),
             'is_deleted' => Yii::t('models', 'Is Deleted'),
             'created_at' => Yii::t('models', 'Created At'),
@@ -80,31 +88,15 @@ abstract class Subject extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return yii\db\ActiveQuery
-     */
-    public function getRelTeacherSubjects()
-    {
-        return $this->hasMany(\common\models\RelTeacherSubject::className(), ['subject_id' => 'id']);
-    }
-
-    /**
-     * @return yii\db\ActiveQuery
-     */
-    public function getSubjectPrices()
-    {
-        return $this->hasMany(\common\models\SubjectPrice::className(), ['subject_id' => 'id']);
-    }
-
 
     
     /**
      * @inheritdoc
-     * @return \common\models\query\SubjectQuery the active query used by this AR class.
+     * @return \common\models\query\PaymentQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\SubjectQuery(get_called_class());
+        return new \common\models\query\PaymentQuery(get_called_class());
     }
 
 

@@ -8,7 +8,7 @@ use yii\helpers\Html;
 /**
  * @var yii\web\View $this
  * @var common\models\Teacher $teacherModel
- * @var \backend\modules\catalog\forms\TeacherUpdateForm $updateForm
+ * @var backend\modules\catalog\forms\TeacherUpdateForm $updateForm
  */
 
 $this->title = Yii::t('models', 'Teacher');

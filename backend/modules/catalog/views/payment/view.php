@@ -1,23 +1,27 @@
 <?php
 
-use common\helpers\RoomHelper;
-use common\models\Room;
-use dmstr\bootstrap\Tabs;
+use common\helpers\PaymentHelper;
+use common\models\Payment;
+use common\models\Teacher;
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\grid\GridView;
 use yii\widgets\DetailView;
+use yii\widgets\Pjax;
+use dmstr\bootstrap\Tabs;
 
 /**
 * @var yii\web\View $this
-* @var common\models\Room $model
+* @var common\models\Payment $model
 */
 $copyParams = $model->attributes;
 
-$this->title = Yii::t('models', 'Room');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Rooms'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => (string)$model->name, 'url' => ['view', 'id' => $model->id]];
+$this->title = Yii::t('models', 'Payment');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Payments'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'View';
 ?>
-<div class="giiant-crud room-view">
+<div class="giiant-crud payment-view">
 
     <!-- flash message -->
     <?php if (\Yii::$app->session->getFlash('deleteError') !== null) : ?>
@@ -29,7 +33,7 @@ $this->params['breadcrumbs'][] = 'View';
     <?php endif; ?>
 
     <h1>
-        <?= Yii::t('models', 'Room') ?>
+        <?= Yii::t('models', 'Payment') ?>
 
     </h1>
 
@@ -58,30 +62,34 @@ $this->params['breadcrumbs'][] = 'View';
 
     <hr/>
 
-    <?php $this->beginBlock('common\models\Room'); ?>
+    <?php $this->beginBlock('common\models\Payment'); ?>
 
-
+    
     <?= DetailView::widget([
-        'template' => "<tr><th style='width: 20%'>{label}</th><td>{value}</td></tr>",
-        'model' => $model,
-        'attributes' => [
-            'name',
-            'number_of_students',
-            [
-                'attribute' => 'type',
-                'value' => function (Room $model) {
-                    return RoomHelper::getTypeLabel($model->type);
-                },
-                'format' => 'raw'
-            ],
-            [
-                'attribute' => 'status',
-                'value' => function (Room $model) {
-                    return RoomHelper::getStatusLabel($model->status);
-                },
-                'format' => 'raw'
-            ]
+    'model' => $model,
+    'attributes' => [
+        'expenditure',
+        'date',
+       [
+           'attribute' => 'type',
+           'vAlign' => 'middle',
+           'hAlign' => 'center',
+           'value'=> function (Payment $model){
+            return PaymentHelper::getTypeName($model->type);
+           }
+
+       ],
+        'description:text',
+        'amount',
+        [
+            'attribute' => 'status',
+            'value' => function (Payment $model) {
+                return PaymentHelper::getStatusLabel($model->status);
+            },
+            'format' => 'raw'
         ],
+
+    ],
     ]); ?>
 
     
@@ -96,15 +104,15 @@ $this->params['breadcrumbs'][] = 'View';
     <?php $this->endBlock(); ?>
 
 
-
+    
     <?= Tabs::widget(
                  [
                      'id' => 'relation-tabs',
                      'encodeLabels' => false,
                      'items' => [
  [
-     'label' => '<b> <i class="fa fa-info-circle"></i> ' . Yii::t('ui', "Подробная информация") . '</b>',
-    'content' => $this->blocks['common\models\Room'],
+    'label'   => '<b class=""># '.Html::encode($model->id).'</b>',
+    'content' => $this->blocks['common\models\Payment'],
     'active'  => true,
 ],
  ]

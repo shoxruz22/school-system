@@ -39,11 +39,6 @@ class Teacher extends BaseTeacher
                 # custom validation rules
                 [['age', 'gender'], 'required'],
                 [['age'], 'number', 'min' => 18],
-<<<<<<< HEAD
-                [['photoFile'], 'file', 'skipOnEmpty'=> false, 'extensions' => 'png, jpg'],
-=======
->>>>>>> 64dbf3d84275ff0e98f74bc5ee8850148793e699
-
             ]
         );
     }

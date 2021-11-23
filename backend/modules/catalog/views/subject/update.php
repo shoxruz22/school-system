@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /**
  * @var yii\web\View $this
  * @var common\models\Subject $model
- * @var \backend\modules\catalog\forms\SubjectUpdateForm $updateForm
+ * @var backend\modules\catalog\forms\SubjectUpdateForm $updateForm
  */
 
 $this->title = Yii::t('models', 'Subject') . ': ' . $model->name;

@@ -38,7 +38,7 @@ class m211112_143132_create_rel_teacher_subject_table extends Migration
             '_teacher',
             'id',
             'RESTRICT'
-        );;
+        );
 
         // Subject
         $this->createIndex(

@@ -70,7 +70,6 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
     {
         $model = $this->findModel($id);
         $form = new TeacherUpdateForm($model);
-
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             $form->photo_file = UploadedFile::getInstance($form, 'photo_file');
 
