@@ -40,8 +40,12 @@
                             ['label' => Yii::t('ui', 'Учителя'), 'icon' => 'file', 'url' => ['/catalog/teacher/index']],
                             ['label' => Yii::t('ui', 'Предметы'), 'icon' => 'file', 'url' => ['/catalog/subject/index']],
                             ['label' => Yii::t('ui', 'Комнаты'), 'icon' => 'file', 'url' => ['/catalog/room/index']],
-                            ['label' => Yii::t('ui', 'Оплата'), 'icon' => 'file', 'url' => ['/catalog/payment/index']],
                         ],
+                    ],
+                    [
+                        'label' => Yii::t('ui', 'Оплата'),
+                        'icon' => 'money',
+                        'url' => ['/catalog/payment/index']
                     ],
                 ],
             ]

@@ -8,35 +8,35 @@ use kartik\grid\GridView;
 use yii\widgets\Pjax;
 
 /**
-* @var yii\web\View $this
-* @var yii\data\ActiveDataProvider $dataProvider
-    * @var common\models\search\PaymentSearch $searchModel
-*/
+ * @var yii\web\View $this
+ * @var yii\data\ActiveDataProvider $dataProvider
+ * @var common\models\search\PaymentSearch $searchModel
+ */
 
 $this->title = Yii::t('models', 'Payments');
 $this->params['breadcrumbs'][] = $this->title;
 
 if (isset($actionColumnTemplates)) {
-$actionColumnTemplate = implode(' ', $actionColumnTemplates);
+    $actionColumnTemplate = implode(' ', $actionColumnTemplates);
     $actionColumnTemplateString = $actionColumnTemplate;
 } else {
-Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphicon-plus"></span> ' . 'New', ['create'], ['class' => 'btn btn-success']);
+    Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphicon-plus"></span> ' . 'New', ['create'], ['class' => 'btn btn-success']);
     $actionColumnTemplateString = "{view} {update} {delete}";
 }
-$actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTemplateString.'</div>';
+$actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemplateString . '</div>';
 ?>
 <div class="payment-index">
 
-    
-    <?php Pjax::begin(['id'=>'pjax-main', 'enableReplaceState'=> false, 'linkSelector'=>'#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success'=>'function(){alert("yo")}']]) ?>
+
+    <?php Pjax::begin(['id' => 'pjax-main', 'enableReplaceState' => false, 'linkSelector' => '#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success' => 'function(){alert("yo")}']]) ?>
 
     <div class="clearfix crud-navigation">
         <div class="pull-left">
-            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui','Добавить'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('<span class="glyphicon glyphicon-plus"></span> ' . Yii::t('ui', 'Добавить'), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
     </div>
 
-    <hr />
+    <hr/>
 
     <div>
         <?php
@@ -49,33 +49,42 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
             [
                 'attribute' => 'expenditure',
                 'vAlign' => 'middle',
-                'hAlign' => 'center',
+                'hAlign' => 'left',
             ],
 
             [
                 'attribute' => 'amount',
+                'width' => '12%',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
+                'pageSummary' => true,
+                'value' => function (Payment $model) {
+                    return ($model->type === Payment::TYPE_INCOME) ? $model->amount : -1 * $model->amount;
+                },
+                'format' => ['decimal'],
             ],
             [
+                'width' => '12%',
                 'attribute' => 'date',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
             ],
             [
+                'width' => '10%',
                 'attribute' => 'type',
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
-                'value'=> function (Payment $model){
+                'value' => function (Payment $model) {
                     return PaymentHelper::getTypeLabel($model->type);
                 },
 
-                 'filter' =>PaymentHelper::getTypeList(),
+                'filter' => PaymentHelper::getTypeList(),
                 'format' => 'raw'
 
             ],
             [
                 'attribute' => 'status',
+                'width' => '10%',
                 'hAlign' => 'center',
                 'value' => function (Payment $model) {
                     return PaymentHelper::getStatusLabel($model->status);
@@ -85,6 +94,7 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
             ],
             [
                 'class' => 'kartik\grid\ActionColumn',
+                'width' => '14%',
                 'template' => $actionColumnTemplateString,
                 'buttons' => [
                     'view' => function ($url, $model) {
@@ -131,6 +141,9 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
             'headerRowOptions' => ['class' => 'kartik-sheet-style'],
             'filterRowOptions' => ['class' => 'kartik-sheet-style'],
             'pjax' => true,
+            'showPageSummary' => true,
+            'pageSummaryRowOptions' => ['class' => 'kv-page-summary info'],
+            'pageSummaryPosition' => GridView::POS_TOP,
             'toolbar' => [
                 [
                     'content' =>

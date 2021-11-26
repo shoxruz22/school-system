@@ -11,10 +11,11 @@ use yii\helpers\ArrayHelper;
  */
 class Payment extends BasePayment
 {
-    const INCOME=1;
-    const OUTCOME=0;
+    const TYPE_INCOME = 1;
+    const TYPE_OUTCOME = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
+
     public function behaviors()
     {
         return ArrayHelper::merge(

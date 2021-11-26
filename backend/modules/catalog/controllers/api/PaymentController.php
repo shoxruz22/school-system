@@ -3,13 +3,13 @@
 namespace backend\modules\catalog\controllers\api;
 
 /**
-* This is the class for REST controller "PaymentController".
-*/
+ * This is the class for REST controller "PaymentController".
+ */
 
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 
 class PaymentController extends \yii\rest\ActiveController
 {
-public $modelClass = 'common\models\Payment';
+    public $modelClass = 'common\models\Payment';
 }

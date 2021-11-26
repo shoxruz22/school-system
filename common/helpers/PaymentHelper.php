@@ -47,13 +47,15 @@ class PaymentHelper
         ]);
 
 
-    } public static function getTypeLabel($name): string
+    }
+
+    public static function getTypeLabel($name): string
     {
         switch ($name) {
-            case Payment::INCOME:
+            case Payment::TYPE_INCOME:
                 $class = 'label label-success';
                 break;
-            case Payment::OUTCOME:
+            case Payment::TYPE_OUTCOME:
                 $class = 'label label-danger';
                 break;
             default:
@@ -68,8 +70,8 @@ class PaymentHelper
     public static function getTypeList(): array
     {
         return [
-           Payment::INCOME => Yii::t('models', 'income'),
-            Payment::OUTCOME => Yii::t('models', 'outcome'),
+            Payment::TYPE_INCOME => Yii::t('models', 'Income'),
+            Payment::TYPE_OUTCOME => Yii::t('models', 'Outcome'),
         ];
     }
 
