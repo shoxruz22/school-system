@@ -68,8 +68,12 @@ $this->params['breadcrumbs'][] = 'View';
     <?= DetailView::widget([
     'model' => $model,
     'attributes' => [
-        'expenditure',
-        'date',
+        'name',
+       [
+           'attribute' => 'date',
+           'vAlign' => 'middle',
+           'hAlign' => 'center',
+        ],
        [
            'attribute' => 'type',
            'vAlign' => 'middle',

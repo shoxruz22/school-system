@@ -1,11 +1,10 @@
 <?php
 
 use common\helpers\PaymentHelper;
-use kartik\datetime\DateTimePicker;
-use yii\helpers\Html;
+use kartik\number\NumberControl;
 use yii\bootstrap\ActiveForm;
-use \dmstr\bootstrap\Tabs;
-use yii\helpers\StringHelper;
+use yii\helpers\Html;
+use yii\widgets\MaskedInput;
 
 /**
 * @var yii\web\View $this
@@ -43,17 +42,20 @@ use yii\helpers\StringHelper;
             
 
 <!-- attribute expenditure -->
-			<?= $form->field($model, 'expenditure')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
 <!-- attribute amount -->
-			<?= $form->field($model, 'amount')->textInput() ?>
+           <?= $form->field($model, 'amount')->widget(NumberControl::classname(), [
+            'maskedInputOptions' => [
+            'suffix' => ' UZS',
+            'allowMinus' => false,
+            'rightAlign' => false
+            ],
+            ]);?>
 <!-- attribute date -->
-			<?= $form->field($model, 'date')->widget(DateTimePicker::classname(), [
-                'options' => ['placeholder' => 'Enter event time ...'],
-                'pluginOptions' => [
-                    'autoclose' => true
-                ]
-            ]); ?>
+            <?= $form->field($model, 'date')->widget(MaskedInput::className(), [
+                'clientOptions' => ['alias' =>  'yyyy/mm/dd']
+            ]) ?>
 
 <!-- attribute type -->
 			<?= $form->field($model, 'type')->dropDownList(PaymentHelper::getTypeList(),['prompt'=>'Choose type...']) ?>

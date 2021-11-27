@@ -47,7 +47,7 @@ $actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemp
                 'contentOptions' => ['class' => 'text-center'],
             ],
             [
-                'attribute' => 'expenditure',
+                'attribute' => 'name',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
             ],

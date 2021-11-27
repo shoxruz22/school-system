@@ -45,7 +45,12 @@
                     [
                         'label' => Yii::t('ui', 'Оплата'),
                         'icon' => 'money',
-                        'url' => ['/catalog/payment/index']
+                        'url' => ['/catalog/payment/index'],
+                        'items' => [
+                            ['label' => Yii::t('ui', 'Все'), 'icon' => 'file', 'url' => ['/catalog/payment/index']],
+                            ['label' => Yii::t('ui', 'Доход'), 'icon' => 'file', 'url' => ['/catalog/payment/index?PaymentSearch%5Bname%5D=&PaymentSearch%5Bamount%5D=&PaymentSearch%5Bdate%5D=&PaymentSearch%5Btype%5D=1&PaymentSearch%5Bstatus%5D=']],
+                            ['label' => Yii::t('ui', 'Исход'), 'icon' => 'file', 'url' => ['/catalog/payment/index?PaymentSearch%5Bname%5D=&PaymentSearch%5Bamount%5D=&PaymentSearch%5Bdate%5D=&PaymentSearch%5Btype%5D=0&PaymentSearch%5Bstatus%5D=']],
+                             ]
                     ],
                 ],
             ]

@@ -19,7 +19,7 @@ class PaymentSearch extends Payment
     {
         return [
             [['type', 'amount', 'status'], 'integer'],
-            [['expenditure', 'date', 'description'], 'safe'],
+            [['name', 'date', 'description'], 'safe'],
         ];
     }
 
@@ -71,7 +71,7 @@ class PaymentSearch extends Payment
             'updated_by' => $this->updated_by,
         ]);
 
-        $query->andFilterWhere(['like', 'expenditure', $this->expenditure])
+        $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;

@@ -14,8 +14,8 @@ class m211123_181953_create_payment_table extends Migration
     {
         $this->createTable('{{%payment}}', [
             'id' => $this->primaryKey(),
-            'expenditure'=>$this->string(255)->notNull(),
-            'date'=>$this->dateTime()->notNull(),
+            'name'=>$this->string(255)->notNull(),
+            'date'=>$this->date()->notNull(),
             'description'=>$this->text(),
             'type'=>$this->tinyInteger(1)->notNull(),
             'amount'=>$this->bigInteger()->defaultValue(0),

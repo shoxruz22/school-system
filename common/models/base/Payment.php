@@ -12,7 +12,7 @@ use yii\behaviors\TimestampBehavior;
  * This is the base-model class for table "payment".
  *
  * @property integer $id
- * @property string $expenditure
+ * @property string $name
  * @property string $date
  * @property string $description
  * @property integer $type
@@ -59,11 +59,11 @@ abstract class Payment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['expenditure', 'date', 'type'], 'required'],
+            [['name', 'date', 'type'], 'required'],
             [['date'], 'safe'],
             [['description'], 'string'],
             [['type', 'amount', 'status', 'is_deleted'], 'integer'],
-            [['expenditure'], 'string', 'max' => 255]
+            [['name'], 'string', 'max' => 255]
         ];
     }
 
@@ -74,7 +74,7 @@ abstract class Payment extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('models', 'ID'),
-            'expenditure' => Yii::t('models', 'Expenditure'),
+            'name' => Yii::t('models', 'Name'),
             'date' => Yii::t('models', 'Date'),
             'description' => Yii::t('models', 'Description'),
             'type' => Yii::t('models', 'Type'),
