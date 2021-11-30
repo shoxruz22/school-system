@@ -2,13 +2,9 @@
 
 use common\helpers\PaymentHelper;
 use common\models\Payment;
-use common\models\Teacher;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\GridView;
-use yii\widgets\DetailView;
-use yii\widgets\Pjax;
 use dmstr\bootstrap\Tabs;
+use yii\helpers\Html;
+use yii\widgets\DetailView;
 
 /**
 * @var yii\web\View $this
@@ -84,7 +80,12 @@ $this->params['breadcrumbs'][] = 'View';
 
        ],
         'description:text',
-        'amount',
+        [
+            'attribute' => 'amount',
+            'vAlign' => 'middle',
+            'hAlign' => 'center',
+
+        ],
         [
             'attribute' => 'status',
             'value' => function (Payment $model) {
@@ -108,19 +109,19 @@ $this->params['breadcrumbs'][] = 'View';
     <?php $this->endBlock(); ?>
 
 
-    
+
     <?= Tabs::widget(
-                 [
-                     'id' => 'relation-tabs',
-                     'encodeLabels' => false,
-                     'items' => [
- [
-    'label'   => '<b class=""># '.Html::encode($model->id).'</b>',
-    'content' => $this->blocks['common\models\Payment'],
-    'active'  => true,
-],
- ]
-                 ]
+        [
+            'id' => 'relation-tabs',
+            'encodeLabels' => false,
+            'items' => [
+                [
+                    'label' => '<b> <i class="fa fa-info-circle"></i> ' . Yii::t('ui', "Подробная информация") . '</b>',
+                    'content' => $this->blocks['common\models\Payment'],
+                    'active' => true,
+                ],
+            ]
+        ]
     );
     ?>
 </div>
