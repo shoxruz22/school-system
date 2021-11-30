@@ -6,7 +6,6 @@ use backend\modules\catalog\forms\TeacherCreateForm;
 use backend\modules\catalog\forms\TeacherUpdateForm;
 use common\models\search\TeacherSearch;
 use common\models\Teacher;
-use dmstr\bootstrap\Tabs;
 use Yii;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
@@ -71,7 +70,6 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
     {
         $model = $this->findModel($id);
         $form = new TeacherUpdateForm($model);
-
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             $form->photo_file = UploadedFile::getInstance($form, 'photo_file');
 
@@ -88,6 +86,7 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
                 'updateForm' => $form
             ]);
         }
+
     }
 
     /**
@@ -119,6 +118,7 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
             $model->delete();
             $model->deletePhoto();
             Yii::$app->session->setFlash('success', Yii::t('ui', "Данные успешно удалено"));
+            return $this->redirect(['index']);
         } catch (\Exception $e) {
             $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
             \Yii::$app->getSession()->addFlash('error', $msg);
