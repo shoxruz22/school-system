@@ -62,8 +62,8 @@ abstract class Payment extends \yii\db\ActiveRecord
             [['name', 'date', 'type'], 'required'],
             [['date'], 'safe'],
             [['description'], 'string'],
-            [['type', 'amount', 'status', 'is_deleted'], 'integer'],
-            [['name'], 'string', 'max' => 255]
+            [['type', 'status', 'is_deleted'], 'integer'],
+            [['name', 'amount'], 'string', 'max' => 255]
         ];
     }
 
@@ -89,7 +89,7 @@ abstract class Payment extends \yii\db\ActiveRecord
     }
 
 
-    
+
     /**
      * @inheritdoc
      * @return \common\models\query\PaymentQuery the active query used by this AR class.
