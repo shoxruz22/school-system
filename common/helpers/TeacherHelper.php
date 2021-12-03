@@ -3,18 +3,18 @@ declare(strict_types=1);
 
 namespace common\helpers;
 
-use common\models\Pupil;
+use common\models\Teacher;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
-class PupilHelper
+class TeacherHelper
 {
     public static function getStatusList(): array
     {
         return [
-            Pupil::STATUS_ACTIVE => Yii::t('models', 'Актив'),
-            Pupil::STATUS_INACTIVE => Yii::t('models', 'Неактив'),
+            Teacher::STATUS_ACTIVE => Yii::t('models', 'Актив'),
+            Teacher::STATUS_INACTIVE => Yii::t('models', 'Неактив'),
         ];
     }
 
@@ -26,10 +26,10 @@ class PupilHelper
     public static function getStatusLabel($status): string
     {
         switch ($status) {
-            case Pupil::STATUS_ACTIVE:
+            case Teacher::STATUS_ACTIVE:
                 $class = 'label label-success';
                 break;
-            case Pupil::STATUS_INACTIVE:
+            case Teacher::STATUS_INACTIVE:
                 $class = 'label label-danger';
                 break;
             default:
@@ -44,8 +44,8 @@ class PupilHelper
     public static function getGenderList(): array
     {
         return [
-            Pupil::GENDER_MALE => Yii::t('models', 'male'),
-            Pupil::GENDER_FEMALE => Yii::t('models', 'female'),
+            Teacher::GENDER_MALE => Yii::t('models', 'male'),
+            Teacher::GENDER_FEMALE => Yii::t('models', 'female'),
         ];
     }
 

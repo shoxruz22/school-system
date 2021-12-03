@@ -36,7 +36,10 @@
         "kartik-v/yii2-dialog": "dev-master",
         "kartik-v/yii2-widget-growl": "dev-master",
         "kartik-v/yii2-widget-alert": "dev-master",
-        "codemix/yii2-localeurls": "^1.7"
+        "codemix/yii2-localeurls": "^1.7",
+        "evgeniyrru/yii2-slick": "*"
+
+
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -48,13 +51,18 @@
         "codeception/module-filesystem": "^1.0",
         "codeception/verify": "~0.5.0 || ~1.1.0",
         "symfony/browser-kit": ">=2.7 <=4.2.4"
+
     },
+
     "config": {
+
         "process-timeout": 1800,
         "fxp-asset": {
             "enabled": false
         }
+
     },
+
     "repositories": [
         {
             "type": "composer",

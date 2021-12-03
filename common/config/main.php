@@ -5,6 +5,16 @@ return [
         '@npm'   => '@vendor/npm-asset',
         '@uploads' => '@appRoot/uploads'
     ],
+    'modules' => [
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+            // enter optional module parameters below - only if you need to
+            // use your own export download action or custom translation
+            // message source
+            // 'downloadAction' => 'gridview/export/download',
+            // 'i18n' => []
+        ]
+    ],
     'timeZone' => "Asia/Tashkent",
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
