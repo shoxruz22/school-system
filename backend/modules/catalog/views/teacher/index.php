@@ -8,15 +8,23 @@ use kartik\grid\GridView;
 use yii\widgets\Pjax;
 
 /**
+<<<<<<< HEAD
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
  * @var common\models\search\PupilSearch $searchModel
  */
+=======
+* @var yii\web\View $this
+* @var yii\data\ActiveDataProvider $dataProvider
+    * @var common\models\search\TeacherSearch $searchModel
+*/
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 
 $this->title = Yii::t('models', 'Teachers');
 $this->params['breadcrumbs'][] = $this->title;
 
 if (isset($actionColumnTemplates)) {
+<<<<<<< HEAD
     $actionColumnTemplate = implode(' ', $actionColumnTemplates);
     $actionColumnTemplateString = $actionColumnTemplate;
 } else {
@@ -26,6 +34,17 @@ if (isset($actionColumnTemplates)) {
 $actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemplateString . '</div>';
 ?>
 <div class="teacher-index">
+=======
+$actionColumnTemplate = implode(' ', $actionColumnTemplates);
+    $actionColumnTemplateString = $actionColumnTemplate;
+} else {
+Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphicon-plus"></span> ' . 'New', ['create'], ['class' => 'btn btn-success']);
+    $actionColumnTemplateString = "{view} {update} {delete}";
+}
+$actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTemplateString.'</div>';
+?>
+<div class="giiant-crud teacher-index">
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 
     <h1>
         <?= he($this->title) ?>
@@ -39,7 +58,11 @@ $actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemp
         </div>
     </div>
 
+<<<<<<< HEAD
     <hr/>
+=======
+    <hr />
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 
     <div>
         <?php
@@ -55,11 +78,14 @@ $actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemp
                 'hAlign' => 'left',
             ],
             [
+<<<<<<< HEAD
                 'attribute' => 'date_birth',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
             ],
             [
+=======
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
                 'attribute' => 'phone',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
@@ -136,7 +162,11 @@ $actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemp
                     'content' =>
                         Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], [
                             'class' => 'btn btn-default',
+<<<<<<< HEAD
                             'title' => Yii::t('kvgrid', 'Reset Grid'),
+=======
+                            'title' => Yii::t('kartik-v grid', 'Reset Grid'),
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
                             'data-pjax' => 0,
                         ]),
                     'options' => ['class' => 'btn-group mr-2']
@@ -158,3 +188,8 @@ $actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemp
 
 
 <?php Pjax::end() ?>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2

@@ -8,7 +8,7 @@
                 <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p><?= Yii::$app->user->identity->username; ?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -38,13 +38,29 @@
                         'items' => [
                             ['label' => Yii::t('ui', 'Ученики'), 'icon' => 'file', 'url' => ['/catalog/pupil/index']],
                             ['label' => Yii::t('ui', 'Учителя'), 'icon' => 'file', 'url' => ['/catalog/teacher/index']],
+<<<<<<< HEAD
                             ['label' => Yii::t('ui', 'Новосты'), 'icon' => 'file', 'url' => ['/catalog/news/index']],
                             ['label' => Yii::t('ui', 'Предметы'), 'icon' => 'file', 'url' => ['/catalog/subject/index']],
+=======
+                            ['label' => Yii::t('ui', 'Предметы'), 'icon' => 'file', 'url' => ['/catalog/subject/index']],
+                            ['label' => Yii::t('ui', 'Комнаты'), 'icon' => 'file', 'url' => ['/catalog/room/index']],
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
                         ],
+                    ],
+                    [
+                        'label' => Yii::t('ui', 'Оплата'),
+                        'icon' => 'money',
+                        'url' => ['/catalog/payment/index'],
+                        'items' => [
+                            ['label' => Yii::t('ui', 'Все'), 'icon' => 'file', 'url' => ['/catalog/payment/index']],
+                            ['label' => Yii::t('ui', 'Доход'), 'icon' => 'plus', 'url' => ['/catalog/payment/index?PaymentSearch%5Bname%5D=&PaymentSearch%5Bamount%5D=&PaymentSearch%5Bdate%5D=&PaymentSearch%5Btype%5D=1&PaymentSearch%5Bstatus%5D=']],
+                            ['label' => Yii::t('ui', 'Исход'), 'icon' => 'minus', 'url' => ['/catalog/payment/index?PaymentSearch%5Bname%5D=&PaymentSearch%5Bamount%5D=&PaymentSearch%5Bdate%5D=&PaymentSearch%5Btype%5D=0&PaymentSearch%5Bstatus%5D=']],
+                             ]
                     ],
                 ],
             ]
         ) ?>
+
 
     </section>
 

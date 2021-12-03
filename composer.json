@@ -37,9 +37,13 @@
         "kartik-v/yii2-widget-growl": "dev-master",
         "kartik-v/yii2-widget-alert": "dev-master",
         "codemix/yii2-localeurls": "^1.7",
+<<<<<<< HEAD
         "evgeniyrru/yii2-slick": "*"
 
 
+=======
+        "kartik-v/yii2-widget-datetimepicker": "dev-master",
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -59,6 +63,7 @@
         "process-timeout": 1800,
         "fxp-asset": {
             "enabled": false
+<<<<<<< HEAD
         }
 
     },
@@ -69,4 +74,14 @@
             "url": "https://asset-packagist.org"
         }
     ]
+=======
+}
+},
+"repositories": [
+{
+"type": "composer",
+"url": "https://asset-packagist.org"
+}
+]
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 }

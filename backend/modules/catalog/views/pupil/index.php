@@ -55,11 +55,14 @@ $actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemp
                 'hAlign' => 'left',
             ],
             [
+<<<<<<< HEAD
                 'attribute' => 'date_birth',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
             ],
             [
+=======
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
                 'attribute' => 'phone',
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
@@ -138,7 +141,11 @@ $actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemp
                             'class' => 'btn btn-default',
                             'title' => Yii::t('kvgrid', 'Reset Grid'),
                             'data-pjax' => 0,
+<<<<<<< HEAD
                         ]),
+=======
+                            ]),
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
                     'options' => ['class' => 'btn-group mr-2']
                 ],
             ],

@@ -66,19 +66,28 @@ $this->params['breadcrumbs'][] = 'View';
         'model' => $model,
         'attributes' => [
             'full_name',
+<<<<<<< HEAD
             'date_birth',
+=======
+            'age',
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
             [
                 'attribute' => 'gender',
                 'value' => function (Pupil $model) {
                     return PupilHelper::getGenderName($model->gender);
                 },
             ],
+<<<<<<< HEAD
             [
                 'attribute' => 'img',
                 'value' => $model->getPhotoSrc(),
                 'format' => ['image', ['width' => 100, 'height' => 100]]
             ],
             'phone',
+=======
+            'phone',
+            'address',
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
             [
                 'attribute' => 'status',
                 'value' => function (Pupil $model) {

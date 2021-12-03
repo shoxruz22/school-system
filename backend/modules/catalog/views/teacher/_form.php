@@ -3,8 +3,12 @@
 use common\helpers\TeacherHelper;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+<<<<<<< HEAD
 use \dmstr\bootstrap\Tabs;
 use yii\helpers\StringHelper;
+=======
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 
 /**
  * @var yii\web\View $this
@@ -14,10 +18,18 @@ use yii\helpers\StringHelper;
 
 ?>
 
+<<<<<<< HEAD
 <div class="pupil-form">
 
     <?php $form = ActiveForm::begin([
             'id' => 'Teacher',
+=======
+<div class="teacher-form">
+
+    <?php $form = ActiveForm::begin([
+            'id' => 'Teacher',
+            'options' => ['enctype' => 'multipart/form-data'],
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
             'layout' => 'horizontal',
             'enableClientValidation' => true,
             'errorSummaryCssClass' => 'error-summary alert alert-danger',
@@ -34,6 +46,7 @@ use yii\helpers\StringHelper;
         ]
     );
     ?>
+<<<<<<< HEAD
 
     <section >
 
@@ -44,10 +57,25 @@ use yii\helpers\StringHelper;
             <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
 
             <!-- attribute img -->
+=======
+    <section>
+
+        <div>
+
+            <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'gender')->dropDownList(TeacherHelper::getGenderList(), ['prompt' => Yii::t('ui', 'Choose...')]) ?>
+
+            <?= $form->field($model, 'age')->textInput(['type' => 'number']) ?>
+
+            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
             <?= $form->field($model, 'photoFile')->fileInput([
                 'accept' => "image/png , image/jpeg"
             ]) ?>
 
+<<<<<<< HEAD
             <!-- attribute date_birth -->
             <?= $form->field($model, 'date_birth')->textInput() ?>
 
@@ -67,6 +95,18 @@ use yii\helpers\StringHelper;
 
         <?php echo $form->errorSummary($model); ?>
 
+=======
+            <!-- attribute address -->
+            <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+            <!-- attribute status -->
+            <?= $form->field($model, 'status')->dropDownList(TeacherHelper::getStatusList()) ?>
+        </div>
+
+
+        <hr/>
+
+        <?php echo $form->errorSummary($model); ?>
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
         <div class="text-center">
             <?= Html::submitButton(
                 '<span class="glyphicon glyphicon-check"></span> ' .

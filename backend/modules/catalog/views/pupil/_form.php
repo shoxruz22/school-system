@@ -1,40 +1,44 @@
 <?php
 
 use common\helpers\PupilHelper;
+<<<<<<< HEAD
 use yii\helpers\Html;
+=======
+use common\models\Pupil;
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 use yii\bootstrap\ActiveForm;
-use \dmstr\bootstrap\Tabs;
-use yii\helpers\StringHelper;
+use yii\helpers\Html;
 
 /**
-* @var yii\web\View $this
-* @var common\models\Pupil $model
-* @var yii\widgets\ActiveForm $form
-*/
+ * @var yii\web\View $this
+ * @var common\models\Pupil $model
+ * @var yii\widgets\ActiveForm $form
+ */
 
 ?>
 
 <div class="pupil-form">
 
     <?php $form = ActiveForm::begin([
-    'id' => 'Pupil',
-    'layout' => 'horizontal',
-    'enableClientValidation' => true,
-    'errorSummaryCssClass' => 'error-summary alert alert-danger',
-    'fieldConfig' => [
-             'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
-             'horizontalCssClasses' => [
-                 'label' => 'col-sm-2',
-                 #'offset' => 'col-sm-offset-4',
-                 'wrapper' => 'col-sm-8',
-                 'error' => '',
-                 'hint' => '',
-             ],
-         ],
-    ]
+            'id' => 'Pupil',
+            'layout' => 'horizontal',
+            'enableClientValidation' => true,
+            'errorSummaryCssClass' => 'error-summary alert alert-danger',
+            'fieldConfig' => [
+                'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
+                'horizontalCssClasses' => [
+                    'label' => 'col-sm-2',
+                    #'offset' => 'col-sm-offset-4',
+                    'wrapper' => 'col-sm-8',
+                    'error' => '',
+                    'hint' => '',
+                ],
+            ],
+        ]
     );
     ?>
 
+<<<<<<< HEAD
     <section >
 
         <div>
@@ -61,6 +65,27 @@ use yii\helpers\StringHelper;
 <!-- attribute phone -->
 			<?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
+=======
+    <section>
+
+        <div>
+            <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'age')->textInput(['type' => 'number']) ?>
+
+            <?= $form->field($model, 'gender')->dropDownList(PupilHelper::getGenderList(), [
+                'prompt' => Yii::t('ui', 'Select')
+            ]) ?>
+
+            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'address')->textarea([
+                'rows' => 4
+            ]) ?>
+
+            <?= $form->field($model, 'status')->dropDownList(PupilHelper::getStatusList()) ?>
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
         </div>
 
         <hr/>
@@ -78,9 +103,12 @@ use yii\helpers\StringHelper;
             );
             ?>
         </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
         <?php ActiveForm::end(); ?>
 
     </section>
 
 </div>
-

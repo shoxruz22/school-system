@@ -13,17 +13,30 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property integer $id
  * @property string $full_name
+<<<<<<< HEAD
  * @property string $img
  * @property integer $date_birth
  * @property integer $gender
  * @property string $phone
  * @property string $address
+=======
+ * @property integer $age
+ * @property string $phone
+ * @property string $address
+ * @property integer $gender
+ * @property string $photo
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
  * @property integer $status
  * @property integer $is_deleted
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $created_by
  * @property integer $updated_by
+<<<<<<< HEAD
+=======
+ *
+ * @property \common\models\RelTeacherSubject[] $relTeacherSubjects
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
  * @property string $aliasModel
  */
 abstract class Teacher extends \yii\db\ActiveRecord
@@ -60,9 +73,15 @@ abstract class Teacher extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+<<<<<<< HEAD
             [['full_name'], 'required'],
             [['date_birth', 'gender', 'status', 'is_deleted'], 'integer'],
             [['full_name', 'img', 'phone', 'address'], 'string', 'max' => 255]
+=======
+            [['full_name', 'gender'], 'required'],
+            [['age', 'gender', 'status', 'is_deleted'], 'integer'],
+            [['full_name', 'phone', 'address', 'photo'], 'string', 'max' => 255]
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
         ];
     }
 
@@ -74,11 +93,19 @@ abstract class Teacher extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('models', 'ID'),
             'full_name' => Yii::t('models', 'Full Name'),
+<<<<<<< HEAD
             'img' => Yii::t('models', 'Img'),
             'date_birth' => Yii::t('models', 'Date Birth'),
             'gender' => Yii::t('models', 'Gender'),
             'phone' => Yii::t('models', 'Phone'),
             'address' => Yii::t('models', 'Address'),
+=======
+            'age' => Yii::t('models', 'Age'),
+            'phone' => Yii::t('models', 'Phone'),
+            'address' => Yii::t('models', 'Address'),
+            'gender' => Yii::t('models', 'Gender'),
+            'photo' => Yii::t('models', 'Photo'),
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
             'status' => Yii::t('models', 'Status'),
             'is_deleted' => Yii::t('models', 'Is Deleted'),
             'created_at' => Yii::t('models', 'Created At'),
@@ -88,6 +115,17 @@ abstract class Teacher extends \yii\db\ActiveRecord
         ];
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRelTeacherSubjects()
+    {
+        return $this->hasMany(\common\models\RelTeacherSubject::className(), ['teacher_id' => 'id']);
+    }
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 
     
     /**

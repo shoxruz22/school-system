@@ -12,7 +12,11 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Pupil'), 'url' =>
 $this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Edit';
 ?>
+<<<<<<< HEAD
 <div class="Pupil-update">
+=======
+<div class="pupil-update">
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 
     <h2>
         <?= he($this->title) ?>

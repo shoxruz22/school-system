@@ -5,12 +5,21 @@ namespace common\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+<<<<<<< HEAD
 use common\models\Subject;
 
 /**
 * SubjectSearch represents the model behind the search form about `common\models\Subject`.
 */
 class SubjectSearch extends Subject
+=======
+use common\models\subject;
+
+/**
+* SubjectSearch represents the model behind the search form about `common\models\subject`.
+*/
+class SubjectSearch extends subject
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 {
 /**
 * @inheritdoc
@@ -18,7 +27,11 @@ class SubjectSearch extends Subject
 public function rules()
 {
 return [
+<<<<<<< HEAD
 [['id', 'status', 'is_deleted', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+=======
+[['id','status'], 'integer'],
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
             [['name'], 'safe'],
 ];
 }
@@ -41,7 +54,11 @@ return Model::scenarios();
 */
 public function search($params)
 {
+<<<<<<< HEAD
 $query = Subject::find();
+=======
+$query = subject::find();
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 
 $dataProvider = new ActiveDataProvider([
 'query' => $query,
@@ -57,6 +74,7 @@ return $dataProvider;
 
 $query->andFilterWhere([
             'id' => $this->id,
+<<<<<<< HEAD
             'status' => $this->status,
             'is_deleted' => $this->is_deleted,
             'created_at' => $this->created_at,
@@ -70,3 +88,12 @@ $query->andFilterWhere([
 return $dataProvider;
 }
 }
+=======
+        ]);
+
+        $query->andFilterWhere(['like', 'name', $this->name])->andFilterWhere(['like', 'status', $this->status]);
+
+return $dataProvider;
+}
+}
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2

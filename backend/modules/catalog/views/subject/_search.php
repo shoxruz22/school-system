@@ -21,6 +21,7 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'name') ?>
 
+<<<<<<< HEAD
 		<?= $form->field($model, 'status') ?>
 
 		<?= $form->field($model, 'is_deleted') ?>
@@ -32,6 +33,8 @@ use yii\widgets\ActiveForm;
 		<?php // echo $form->field($model, 'created_by') ?>
 
 		<?php // echo $form->field($model, 'updated_by') ?>
+=======
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

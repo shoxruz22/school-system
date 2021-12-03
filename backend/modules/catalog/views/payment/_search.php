@@ -5,12 +5,12 @@ use yii\widgets\ActiveForm;
 
 /**
 * @var yii\web\View $this
-* @var common\models\search\PupilSearch $model
+* @var common\models\search\PaymentSearch $model
 * @var yii\widgets\ActiveForm $form
 */
 ?>
 
-<div class="pupil-search">
+<div class="payment-search">
 
     <?php $form = ActiveForm::begin([
     'action' => ['index'],
@@ -19,17 +19,15 @@ use yii\widgets\ActiveForm;
 
     		<?= $form->field($model, 'id') ?>
 
-		<?= $form->field($model, 'full_name') ?>
+		<?= $form->field($model, 'name') ?>
 
-		<?= $form->field($model, 'img') ?>
+		<?= $form->field($model, 'date') ?>
 
-		<?= $form->field($model, 'date_birth') ?>
+		<?= $form->field($model, 'description') ?>
 
-		<?= $form->field($model, 'gender') ?>
+		<?= $form->field($model, 'type') ?>
 
-		<?php // echo $form->field($model, 'phone') ?>
-
-		<?php // echo $form->field($model, 'address') ?>
+		<?php // echo $form->field($model, 'amount') ?>
 
 		<?php // echo $form->field($model, 'status') ?>
 

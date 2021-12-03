@@ -1,8 +1,16 @@
 <?php
+<<<<<<< HEAD
 declare(strict_types=1);
 
 namespace common\helpers;
 
+=======
+
+namespace common\helpers;
+
+
+use common\models\Pupil;
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 use common\models\Subject;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -10,6 +18,10 @@ use yii\helpers\Html;
 
 class SubjectHelper
 {
+<<<<<<< HEAD
+=======
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
     public static function getStatusList(): array
     {
         return [
@@ -26,10 +38,17 @@ class SubjectHelper
     public static function getStatusLabel($status): string
     {
         switch ($status) {
+<<<<<<< HEAD
             case Subject::STATUS_ACTIVE:
                 $class = 'label label-success';
                 break;
             case Subject::STATUS_INACTIVE:
+=======
+            case Pupil::STATUS_ACTIVE:
+                $class = 'label label-success';
+                break;
+            case Pupil::STATUS_INACTIVE:
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
                 $class = 'label label-danger';
                 break;
             default:
@@ -40,7 +59,11 @@ class SubjectHelper
             'class' => $class,
         ]);
     }
+<<<<<<< HEAD
 
 
 
 }
+=======
+}
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2

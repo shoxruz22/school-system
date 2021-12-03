@@ -1,5 +1,9 @@
 <?php
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 use common\helpers\SubjectHelper;
 use common\models\Subject;
 use yii\helpers\Html;
@@ -8,15 +12,23 @@ use kartik\grid\GridView;
 use yii\widgets\Pjax;
 
 /**
+<<<<<<< HEAD
 * @var yii\web\View $this
 * @var yii\data\ActiveDataProvider $dataProvider
     * @var common\models\search\SubjectSearch $searchModel
 */
+=======
+ * @var yii\web\View $this
+ * @var yii\data\ActiveDataProvider $dataProvider
+ * @var common\models\search\SubjectSearch $searchModel
+ */
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 
 $this->title = Yii::t('models', 'Subjects');
 $this->params['breadcrumbs'][] = $this->title;
 
 if (isset($actionColumnTemplates)) {
+<<<<<<< HEAD
 $actionColumnTemplate = implode(' ', $actionColumnTemplates);
     $actionColumnTemplateString = $actionColumnTemplate;
 } else {
@@ -24,6 +36,15 @@ Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphic
     $actionColumnTemplateString = "{view} {update} {delete}";
 }
 $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTemplateString.'</div>';
+=======
+    $actionColumnTemplate = implode(' ', $actionColumnTemplates);
+    $actionColumnTemplateString = $actionColumnTemplate;
+} else {
+    Yii::$app->view->params['pageButtons'] = Html::a('<span class="glyphicon glyphicon-plus"></span> ' . 'New', ['create'], ['class' => 'btn btn-success']);
+    $actionColumnTemplateString = "{view} {update} {delete}";
+}
+$actionColumnTemplateString = '<div class="action-buttons">' . $actionColumnTemplateString . '</div>';
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 ?>
 <div class="subject-index">
 
@@ -41,7 +62,11 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
 
     <hr/>
 
+<<<<<<< HEAD
     <div>
+=======
+    <section>
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
         <?php
         $gridColumns = [
             [
@@ -54,9 +79,21 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'vAlign' => 'middle',
                 'hAlign' => 'left',
             ],
+<<<<<<< HEAD
 
             [
                 'attribute' => 'status',
+=======
+            [
+                'attribute' => 'viewActivePrice',
+                'vAlign' => 'middle',
+                'hAlign' => 'center',
+                'width' => '150px'
+            ],
+            [
+                'attribute' => 'status',
+                'width' => '150px',
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
                 'vAlign' => 'middle',
                 'hAlign' => 'center',
                 'value' => function (Subject $model) {
@@ -65,6 +102,10 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
                 'filter' => SubjectHelper::getStatusList(),
                 'format' => 'raw'
             ],
+<<<<<<< HEAD
+=======
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
             [
                 'class' => 'kartik\grid\ActionColumn',
                 'template' => $actionColumnTemplateString,
@@ -134,9 +175,17 @@ $actionColumnTemplateString = '<div class="action-buttons">'.$actionColumnTempla
             'toggleDataOptions' => ['minCount' => 10],
         ]);
         ?>
+<<<<<<< HEAD
     </div>
 
 </div>
 
 
 <?php Pjax::end() ?>
+=======
+    </section>
+
+    <?php Pjax::end() ?>
+
+</div>
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2

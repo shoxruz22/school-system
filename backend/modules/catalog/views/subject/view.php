@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 use common\helpers\SubjectHelper;
 use common\models\Subject;
 use yii\helpers\Html;
@@ -11,14 +12,35 @@ use dmstr\bootstrap\Tabs;
 * @var yii\web\View $this
 * @var common\models\Subject $model
 */
+=======
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\grid\GridView;
+use yii\widgets\DetailView;
+use yii\widgets\Pjax;
+use dmstr\bootstrap\Tabs;
+
+
+/**
+ * @var yii\web\View $this
+ * @var common\models\Subject $model
+ */
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 $copyParams = $model->attributes;
 
 $this->title = Yii::t('models', 'Subject');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('models', 'Subjects'), 'url' => ['index']];
+<<<<<<< HEAD
 $this->params['breadcrumbs'][] = ['label' => (string)$model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'View';
 ?>
 <div class=" subject-view">
+=======
+$this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'View';
+?>
+<div class="subject-view">
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 
     <!-- flash message -->
     <?php if (\Yii::$app->session->getFlash('deleteError') !== null) : ?>
@@ -33,6 +55,10 @@ $this->params['breadcrumbs'][] = 'View';
         <?= he($this->title) ?>
     </h2>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
     <div class="clearfix crud-navigation">
 
         <!-- menu buttons -->
@@ -59,6 +85,7 @@ $this->params['breadcrumbs'][] = 'View';
 
     <?php $this->beginBlock('common\models\Subject'); ?>
 
+<<<<<<< HEAD
     
     <?= DetailView::widget([
     'model' => $model,
@@ -88,6 +115,31 @@ $this->params['breadcrumbs'][] = 'View';
 
     <?php $this->endBlock(); ?>
 
+=======
+
+    <?= DetailView::widget([
+        'model' => $model,
+        'template' => "<tr><th style='width: 20%'>{label}</th><td>{value}</td></tr>",
+        'attributes' => [
+            'name',
+            'viewActivePrice'
+        ],
+    ]); ?>
+
+
+    <hr/>
+
+    <?= Html::a('<span class="glyphicon glyphicon-trash"></span> ' . 'Удалить', ['delete', 'id' => $model->id],
+        [
+            'class' => 'btn btn-danger',
+            'data-confirm' => '' . 'Вы уверены, что хотите удалить этот элемент?' . '',
+            'data-method' => 'post',
+        ]); ?>
+    <?php $this->endBlock(); ?>
+
+
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
     <?= Tabs::widget(
         [
             'id' => 'relation-tabs',
@@ -95,7 +147,11 @@ $this->params['breadcrumbs'][] = 'View';
             'items' => [
                 [
                     'label' => '<b> <i class="fa fa-info-circle"></i> ' . Yii::t('ui', "Подробная информация") . '</b>',
+<<<<<<< HEAD
                     'content' => $this->blocks['common\models\Pupil'],
+=======
+                    'content' => $this->blocks['common\models\Subject'],
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
                     'active' => true,
                 ],
             ]

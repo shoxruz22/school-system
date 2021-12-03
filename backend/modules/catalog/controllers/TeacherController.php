@@ -2,11 +2,20 @@
 
 namespace backend\modules\catalog\controllers;
 
+<<<<<<< HEAD
+=======
+use backend\modules\catalog\forms\TeacherCreateForm;
+use backend\modules\catalog\forms\TeacherUpdateForm;
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 use common\models\search\TeacherSearch;
 use common\models\Teacher;
 use Yii;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
+<<<<<<< HEAD
+=======
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 /**
  * This is the class for controller "TeacherController".
  */
@@ -34,6 +43,7 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
      */
     public function actionCreate()
     {
+<<<<<<< HEAD
         $model = new Teacher;
 
         try {
@@ -54,6 +64,29 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
             $model->addError('_exception', $msg);
         }
         return $this->render('create', ['model' => $model]);
+=======
+        $form = new TeacherCreateForm;
+
+        try {
+            if ($form->load(Yii::$app->request->post())) {
+                $form->photoFile = UploadedFile::getInstance($form, 'photoFile');
+                if ($form->validate()) {
+                    $form->uploadPhoto();
+                    $form->saveData();
+                    Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
+                    return $this->redirect(['index']);
+                } elseif (!Yii::$app->request->isPost) {
+                    $form->load($_GET);
+                }
+            }
+        } catch (\Exception $e) {
+            $msg = $e->errorInfo[2] ?? $e->getMessage();
+            $form->addError('_exception', $msg);
+        }
+        return $this->render('create', [
+            'createForm' => $form
+        ]);
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
     }
 
     /**
@@ -65,6 +98,7 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+<<<<<<< HEAD
 
         if ($model->load(Yii::$app->request->post())) {
             $model->photoFile = UploadedFile::getInstance($model, 'photoFile');
@@ -81,6 +115,44 @@ class TeacherController extends \backend\modules\catalog\controllers\base\Teache
             ]);
         }
     }
+=======
+        $form = new TeacherUpdateForm($model);
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            $form->photo_file = UploadedFile::getInstance($form, 'photo_file');
+
+            if ($form->photo_file !== null) {
+                $form->updatePhoto();
+            }
+
+            $form->saveData();
+            Yii::$app->session->setFlash('success', Yii::t('ui', "Данные созданы успешно"));
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('update', [
+                'teacherModel' => $model,
+                'updateForm' => $form
+            ]);
+        }
+
+    }
+
+    /**
+     * Displays a single Teacher model.
+     * @param integer $id
+     *
+     * @return mixed
+     */
+    public function actionView($id)
+    {
+        $model = $this->findModel($id);
+
+        return $this->render('view', [
+            'model' => $model,
+        ]);
+    }
+
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
     /**
      * Deletes an existing Teacher model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

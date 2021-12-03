@@ -12,15 +12,22 @@ use yii\helpers\Url;
  */
 class Pupil extends BasePupil
 {
+<<<<<<< HEAD
     public $photoFile;
 
     const PATH_PHOTO = '/uploads/photos/pupil';
 
+=======
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 0;
 
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
+<<<<<<< HEAD
+=======
+
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 
     public function behaviors()
     {
@@ -38,8 +45,13 @@ class Pupil extends BasePupil
             parent::rules(),
             [
                 # custom validation rules
+<<<<<<< HEAD
                 [[ 'gender'], 'required'],
                 [['photoFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+=======
+                [['age', 'gender'], 'required'],
+                [['age'], 'number', 'min' => 3]
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
             ]
         );
     }

@@ -8,10 +8,11 @@ use yii\data\ActiveDataProvider;
 use common\models\Pupil;
 
 /**
-* PupilSearch represents the model behind the search form about `common\models\Pupil`.
-*/
+ * PupilSearch represents the model behind the search form about `common\models\Pupil`.
+ */
 class PupilSearch extends Pupil
 {
+<<<<<<< HEAD
 /**
 * @inheritdoc
 */
@@ -22,40 +23,52 @@ return [
             [['full_name', 'img', 'phone', 'address'], 'safe'],
 ];
 }
+=======
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['id', 'age', 'gender', 'status', 'is_deleted', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['full_name', 'address', 'phone'], 'safe'],
+        ];
+    }
+>>>>>>> f5e53ef486195602315b7c6bcf81914f468163f2
 
-/**
-* @inheritdoc
-*/
-public function scenarios()
-{
+    /**
+     * @inheritdoc
+     */
+    public function scenarios()
+    {
 // bypass scenarios() implementation in the parent class
-return Model::scenarios();
-}
+        return Model::scenarios();
+    }
 
-/**
-* Creates data provider instance with search query applied
-*
-* @param array $params
-*
-* @return ActiveDataProvider
-*/
-public function search($params)
-{
-$query = Pupil::find();
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
+    public function search($params)
+    {
+        $query = Pupil::find();
 
-$dataProvider = new ActiveDataProvider([
-'query' => $query,
-]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
-$this->load($params);
+        $this->load($params);
 
-if (!$this->validate()) {
+        if (!$this->validate()) {
 // uncomment the following line if you do not want to any records when validation fails
 // $query->where('0=1');
-return $dataProvider;
-}
+            return $dataProvider;
+        }
 
-$query->andFilterWhere([
+        $query->andFilterWhere([
             'id' => $this->id,
             'date_birth' => $this->date_birth,
             'gender' => $this->gender,
@@ -72,6 +85,6 @@ $query->andFilterWhere([
             ->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'address', $this->address]);
 
-return $dataProvider;
-}
+        return $dataProvider;
+    }
 }
